@@ -1,6 +1,6 @@
 :root {
   --primary-color: rgba(0, 0, 0, 0.8);
-  --secondary-color: rgba(106, 117, 132, 0.5);
+  --secondary-color: rgba(106, 117, 132, 0.45);
   --tertiary-color: rgb(39, 181, 203);
   --accent-color: rgb(137, 232, 222);
   --font-color-light: rgb(229, 255, 252);
@@ -219,11 +219,10 @@ ul li a:hover {
   background-color: #111111;
 }
 
-h2{
+h2 {
   margin-left: 20px;
   margin-right: 900px;
   background-color: var(--secondary-color);
-  color: var(--font-color-light);
   margin-top: 50px;
   font-size: 50px;
   text-align: center;
