@@ -1,54 +1,79 @@
-:root{
-    --primary-color: #210124;
-    --secondary-color:#750D37;
-    --accent-color: #B3DEC1;
-    --font-color-light: #E5FCF5;
-    --font-color-dark: #333;
-    --background-color: #FEFFFE;
-    --border-color: #5B2333;
-    font-family: Arial, Helvetica, sans-serif;
+:root {
+  --primary-color: rgba(33, 1, 36, 0.8);
+  --secondary-color: rgba(100, 9, 45, 0.5);
+  --tertiary-color: rgb(255, 0, 255);
+  --accent-color: rgb(179, 222, 193);
+  --font-color-light: rgb(254, 255, 254);
+  --font-color-dark: rgb(51, 51, 51);
+  --background-color: rgb(208, 234, 248);
+  --border-color: rgb(138, 0, 196);
+  font-family: Arial, Helvetica, sans-serif;
+}
+* {
+  margin: 0px;
+  padding: 0px;
 }
 
-h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0px;
-    padding: 10px;
-    font-size: 60px;
+body {
+  background-color: var(--background-color);
 }
 
-nav{
-    background-color: var(--secondary-color);
-    font-size: 25px;
-    text-align: center;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding: 10px;
+  font-size: 60px;
 }
 
-nav a{
-    color: var(--font-color-light);
-    text-decoration: none;
-    border: 3px solid var(--border-color);
-    padding: 10px;
+nav {
+  font-size: 25px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+  padding: 0 10px;
+  padding-bottom: 10px;
 }
 
-
-
-
-.font-light{
-    color: var(--font-color-light);
+/* ----------------------------------------------------------------*/
+.glass-neon {
+  color: var(--font-color-light);
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  border: 3px solid var(--border-color);
+  background-color: var(--secondary-color);
 }
-.font-dark{
-    color: var(--font-color-dark);
+
+.glass-neon {
+  animation: rgbGlow 5s linear infinite;
 }
 
-header{
-    background-color: var(--primary-color);
+@keyframes rgbGlow {
+  0% {
+    box-shadow: 0 0 10px var(--secondary-color);
+  }
+  50% {
+    box-shadow: 0 0 15px var(--tertiary-color);
+  }
+  100% {
+    box-shadow: 0 0 10px var(--secondary-color);
+  }
+}
+/* ----------------------------------------------------------------*/
+.font-light {
+  color: var(--font-color-light);
+}
+.font-dark {
+  color: var(--font-color-dark);
+}
+
+header {
+  background-color: var(--primary-color);
 }
 
 ul {
