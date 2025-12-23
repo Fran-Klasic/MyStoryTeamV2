@@ -67,11 +67,11 @@ nav {
 .cool-btn {
   overflow: hidden;
   position: relative;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cool-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: 0 10px 25px rgba(255, 130, 77, 0.4);
 }
 
@@ -91,7 +91,7 @@ nav {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.1),
     transparent
   );
 
