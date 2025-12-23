@@ -224,3 +224,13 @@ h2 {
   font-size: var(--font-h1);
   text-align: center;
 }
+
+p{
+  background-color: var(--secondary-color);
+  font-size: var(--font-normal);
+
+}
+
+.List1{
+  list-style-type: circle;
+}
