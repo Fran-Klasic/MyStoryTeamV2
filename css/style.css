@@ -278,23 +278,19 @@ h2 {
   border: 2px solid var(--border-color);
 }
 
-p{
+p {
   background-color: var(--secondary-color);
   font-size: var(--font-normal);
   border: 2px solid var(--border-color);
 }
 
-ol{
-  
+ol {
   font-size: var(--font-normal);
-  
 }
 
-ol li{
+ol li {
   background-color: var(--background-color);
 }
-
-
 
 .button1 {
   font-size: 1.4em;
@@ -337,7 +333,7 @@ ol li{
   filter: blur(0.2em);
 }
 
-.marg{
+.marg {
   margin-left: 0%;
   margin-right: 80%;
 }
@@ -368,7 +364,3 @@ ol li{
   box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
     0 0 100px #008cff;
 }
-
-
-
-
