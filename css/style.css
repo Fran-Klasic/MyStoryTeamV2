@@ -1,12 +1,13 @@
 :root {
   --primary-color: rgba(0, 0, 0, 0.8);
-  --secondary-color: rgba(106, 117, 132, 0.45);
+  --secondary-color: rgba(106, 117, 132, 0.75);
   --tertiary-color: rgb(39, 181, 203);
   --accent-color: rgb(137, 232, 222);
   --font-color-light: rgb(229, 255, 252);
   --font-color-dark: rgb(51, 51, 51);
   --background-color: rgb(223, 252, 253);
   --border-color: rgb(15, 166, 221);
+  --button-color: rgb(69, 0, 218);
 
   --font-title: 60px;
   --font-h1: 50px;
@@ -274,14 +275,100 @@ h2 {
   background-color: var(--secondary-color);
   font-size: var(--font-h1);
   text-align: center;
+  border: 2px solid var(--border-color);
 }
 
 p{
   background-color: var(--secondary-color);
   font-size: var(--font-normal);
-
+  border: 2px solid var(--border-color);
 }
 
-.List1{
-  list-style-type: circle;
+ol{
+  
+  font-size: var(--font-normal);
+  
 }
+
+ol li{
+  background-color: var(--background-color);
+}
+
+
+
+.button1 {
+  font-size: 1.4em;
+  padding: 0.6em 0.8em;
+  border-radius: 0.5em;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px #000000b4;
+  font-size: var(--font-normal);
+}
+
+.container {
+  position: relative;
+  padding: 3px;
+  background: linear-gradient(90deg, #03a9f4, var(--button-color));
+  border-radius: 0.9em;
+  transition: all 0.4s ease;
+  margin-left: 150px;
+  margin-right: 2210px;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 0.9em;
+  z-index: -10;
+  filter: blur(0);
+  transition: filter 0.4s ease;
+}
+
+.container:hover::before {
+  background: linear-gradient(90deg, #03a9f4, var(--button-color));
+  filter: blur(1.2em);
+}
+.container:active::before {
+  filter: blur(0.2em);
+}
+
+.marg{
+  margin-left: 0%;
+  margin-right: 80%;
+}
+
+.button2 {
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  font-size: var(--font-normal);
+  font-weight: 500;
+  color: var(--font-color-light);
+  text-shadow: none;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  box-shadow: transparent;
+  border: 1px solid #ffffff80;
+  transition: 0.5s ease;
+  user-select: none;
+  margin-left: 7%;
+}
+
+#btn:hover,
+:focus {
+  color: #ffffff;
+  background: #008cff;
+  border: 1px solid #008cff;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
+    0 0 100px #008cff;
+}
+
+
+
+
