@@ -7,6 +7,12 @@
   --font-color-dark: rgb(51, 51, 51);
   --background-color: rgb(223, 252, 253);
   --border-color: rgb(15, 166, 221);
+
+  --font-title: 60px;
+  --font-h1: 50px;
+  --font-h2: 40px;
+  --font-normal: 30px;
+  --font-button: 25px;
   font-family: Arial, Helvetica, sans-serif;
 }
 * {
@@ -24,11 +30,11 @@ h1 {
   align-items: center;
   margin: 0px;
   padding: 10px;
-  font-size: 60px;
+  font-size: var(--font-title);
 }
 
 nav {
-  font-size: 25px;
+  font-size: var(--font-button);
   text-align: center;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -190,11 +196,9 @@ nav {
 .font-dark {
   color: var(--font-color-dark);
 }
-
 header {
   background-color: var(--primary-color);
 }
-
 ul {
   list-style-type: none;
   margin: 0;
@@ -202,11 +206,9 @@ ul {
   overflow: hidden;
   background-color: #333333;
 }
-
 ul li {
   float: left;
 }
-
 ul li a {
   display: block;
   color: white;
@@ -214,16 +216,11 @@ ul li a {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 ul li a:hover {
   background-color: #111111;
 }
-
 h2 {
-  margin-left: 20px;
-  margin-right: 900px;
   background-color: var(--secondary-color);
-  margin-top: 50px;
-  font-size: 50px;
+  font-size: var(--font-h1);
   text-align: center;
 }
