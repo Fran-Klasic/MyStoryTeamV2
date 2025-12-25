@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Story Team</title>
     <link rel="stylesheet" href="css/style.css" />
-    <script src="dist/main.js" defer></script>
+    <script src="dist/main.js" type="module"></script>
   </head>
 
   <body>
@@ -14,111 +14,112 @@
       <div class="corner top-right"></div>
 
       <h1 class="font-light gradient-text">My Story Team</h1>
+      <p class="font-light subtitle">
+        How to become a master in creating your future
+      </p>
       <nav>
         <a class="select" href="#Overview">Overview</a>
-        <a class="select" href="#Our-Story">About</a>
+        <a class="select" href="#About">About</a>
         <a class="select" href="#Discover">Discover</a>
         <a class="select" href="#Walkthrough">Walkthrough</a>
         <a class="select" href="#Demonstrations">Demonstrations</a>
         <a class="select" href="#Sign-in">Sign in</a>
       </nav>
     </header>
-
-    <div class="main-bg"></div>
     <main>
       <section id="Overview">
         <h2 class="font-dark">Overview</h2>
-        <p>
-          My Story Team is an application that allows users to create planners
-          for their short-term, mid-term, and long-term goals. By using the app,
-          users can organize their plans more effectively, track their progress,
-          and stay motivated throughout the entire process. The application
-          offers a clear and simple way to manage tasks and goals, making it
-          easier and faster to turn plans into reality.
+        <p class="font-dark">
+          My Story Team helps you turn big, overwhelming goals into clear,
+          manageable plans. By organizing your life into daily actions,
+          short-term milestones, and long-term ambitions, the planner gives
+          structure, clarity, and motivation to move forward, one step at a
+          time.
         </p>
       </section>
 
-      <section id="Our-Story">
+      <section id="About">
         <h2 class="font-dark">About</h2>
-        <p>
-          People often have big life goals such as education, career, health, or
-          personal development, but they frequently face the same challenges:
-          they do not know where to start, they see their goals as too distant
-          or unattainable, they lose motivation and give up, and they neglect
-          basic habits such as sleep, health, and daily routines.
-          <br />This represents a significant social issue. When people fail to
-          reach their full potential, levels of stress, anxiety, and burnout
-          increase. More and more young people give up on education, work, or
-          personal ambitions, and society gradually loses productive, healthy,
-          and motivated individuals.
+
+        <p class="font-dark">
+          Many people have important life goals such as education, career
+          growth, health, or personal development, yet they often struggle to
+          turn those goals into action. Common obstacles include not knowing
+          where to begin, feeling overwhelmed by long-term ambitions, losing
+          motivation over time, and neglecting essential daily habits.
+          <br />
+          When these challenges persist, stress, anxiety, and burnout increase.
+          Talented and motivated individuals may give up on their ambitions,
+          leading to lost potential both on a personal level and within society
+          as a whole.
         </p>
-        <p>
-          <b
-            >To address this problem, the planner is based on a circle system.
-            Each circle represents a different level of importance and time
-            scale:</b
-          >
+
+        <p class="font-dark">
+          My Story Team was created to address this problem by helping people
+          break down complex goals into clear, structured plans. Instead of
+          facing the future as a single overwhelming task, users can focus on
+          meaningful steps, track their progress, and build momentum over time.
         </p>
-        <br />
-        <ol class="List1">
-          <li>the smallest circle represents daily plans</li>
-          <li>
-            the medium circle represents short-term goals (from the current
-            month up to, for example, the end of the year)
-          </li>
-          <li>
-            the largest circle represents long-term goals that span several
-            years, such as enrolling in university
-          </li>
-        </ol>
+
+        <ul class="font-dark">
+          <li>Turn big goals into manageable steps</li>
+          <li>Stay motivated through visible progress</li>
+          <li>Plan daily actions alongside short- and long-term ambitions</li>
+        </ul>
       </section>
 
       <section id="Discover">
         <h2 class="font-dark marg">Discover</h2>
-        <a href="https://fran-klasic.github.io/ProjektHackathon/">
+        <div>
+          <p class="font-dark">
+            Experience the planner in action and see how your goals can be
+            transformed into a clear, visual structure.
+          </p>
           <div class="container">
-            <button class="button1">Try it out</button>
+            <a
+              href="https://fran-klasic.github.io/ProjektHackathon/"
+              class="button font-light"
+              target="_blank"
+            >
+              Try it out
+            </a>
           </div>
-        </a>
+        </div>
       </section>
 
       <section id="Walkthrough">
         <h2 class="font-dark">Walkthrough</h2>
+        <p class="font-dark">
+          A step-by-step overview of how the planner works from daily tasks to
+          long-term goals.
+        </p>
         <img src="Images/P5.png" alt="PNG" />
       </section>
 
       <section id="Demonstrations">
         <h2 class="font-dark">Demonstrations</h2>
+        <p class="font-dark">
+          Visual demonstrations showing how goals evolve from daily actions to
+          long-term ambitions.
+        </p>
         <img src="Images/P5.png" alt="PNG" />
       </section>
 
       <section id="Sign-in">
         <h2 class="font-dark marg">Sign in</h2>
-        <div class="container">
-            <button class="button1">Sign in</button>
+        <div>
+          <p class="font-dark">
+            Sign in to get the full experience of the Cinematic Planner & Helper
+            made by My Story Team
+            <br />
+            Ready to start shaping your story?
+          </p>
+          <div class="container">
+            <button class="button font-light">Sign in</button>
           </div>
+        </div>
       </section>
     </main>
     <footer></footer>
-    <script>
-      const sections = document.querySelectorAll("section");
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-            }
-          });
-        },
-        {
-          threshold: 0.2,
-        }
-      );
-
-      sections.forEach((section) => {
-        observer.observe(section);
-      });
-    </script>
   </body>
 </html>
