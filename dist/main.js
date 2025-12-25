@@ -11,10 +11,16 @@ const initParallax = () => {
     const updateTarget = () => {
         const rect = main.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
-        // Sync height
-        bg.style.height = `${rect.height}px`;
+        // Sync background height to main
+        const bgHeight = bg.offsetHeight;
+        bg.style.height = `${rect.height * 1.2}px`;
+        // How far the background can move
+        const maxTranslate = bg.offsetHeight - rect.height;
+        // Scroll progress of main through viewport
         const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
-        targetY = clamp(progress, 0, 1) * rect.height * 0.25;
+        const clamped = clamp(progress, 0, 1);
+        // FULL mapping: top → bottom
+        targetY = clamped * maxTranslate;
     };
     const animate = () => {
         currentY += (targetY - currentY) * SMOOTHNESS;

@@ -12,23 +12,33 @@ const initParallax = (): void => {
     Math.min(Math.max(v, min), max);
 
   const updateTarget = (): void => {
-    const rect = main.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
+  const rect = main.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
 
-    // Sync height
-    bg.style.height = `${rect.height}px`;
+  // Sync background height to main
+  const bgHeight = bg.offsetHeight;
+  bg.style.height = `${rect.height * 1.2}px`;
 
-    const progress =
-      (viewportHeight - rect.top) / (viewportHeight + rect.height);
+  // How far the background can move
+  const maxTranslate = bg.offsetHeight - rect.height;
 
-    targetY = clamp(progress, 0, 1) * rect.height * 0.25;
-  };
+  // Scroll progress of main through viewport
+  const progress =
+    (viewportHeight - rect.top) / (viewportHeight + rect.height);
 
-  const animate = (): void => {
-    currentY += (targetY - currentY) * SMOOTHNESS;
-    bg.style.transform = `translateX(-50%) translateY(${currentY}px)`;
-    requestAnimationFrame(animate);
-  };
+  const clamped = clamp(progress, 0, 1);
+
+  // FULL mapping: top → bottom
+  targetY = clamped * maxTranslate;
+};
+
+
+const animate = (): void => {
+  currentY += (targetY - currentY) * SMOOTHNESS;
+  bg.style.transform = `translateX(-50%) translateY(${currentY}px)`;
+  requestAnimationFrame(animate);
+};
+
 
   window.addEventListener("scroll", updateTarget, { passive: true });
   window.addEventListener("resize", updateTarget);

@@ -4,9 +4,9 @@
   --tertiary-color: rgb(39, 181, 203);
   --accent-color: rgb(137, 232, 222);
   --font-color-light: rgb(229, 255, 252);
-  --font-color-dark: rgb(51, 51, 51);
+  --font-color-dark: rgb(35, 35, 35);
   --background-color: rgb(223, 252, 253);
-  --background-color-text: rgb(255, 255, 255);
+  --background-color-text: rgba(255, 255, 255, 0.7);
   --border-color: rgb(15, 166, 221);
   --button-color: rgb(69, 0, 218);
   --list-background: #cceaf9;
@@ -203,7 +203,7 @@ main {
   transform: translateX(-50%) translateY(0);
 
   width: 90vw;
-  height: 100%;
+  height: 120%;
 
   background-image: url("../Images/Poster.png");
   background-repeat: no-repeat;
@@ -236,8 +236,11 @@ p {
   padding: 10px;
   background-color: var(--background-color-text);
   font-size: var(--font-normal);
+  backdrop-filter: blur(3px);
 }
 h2 {
+  background-color: var(--background-color-text);
+  backdrop-filter: blur(3px);
   font-size: 2.3rem;
   margin-bottom: 1rem;
   border-left: 6px solid var(--accent);
