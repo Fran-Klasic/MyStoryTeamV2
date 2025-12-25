@@ -210,6 +210,13 @@ section {
   scroll-margin-top: 160px;
 }
 
+section h2 {
+        font-size: 2.3rem;
+        margin-bottom: 1rem;
+        border-left: 6px solid var(--button-color);
+        padding-left: 1rem;
+}
+
 section.visible {
   opacity: 1;
   transform: translateY(0);
@@ -242,7 +249,7 @@ h2 {
   border: 2px solid var(--border-color);
 } */
 
-/* 
+ 
 ol {
   font-size: var(--font-normal);
 }
@@ -313,9 +320,9 @@ ol li {
   transition: 0.5s ease;
   user-select: none;
   margin-left: 7%;
-} */
+} /*k*/
 
-/* #btn:hover,
+ #btn:hover,
 :focus {
   color: #ffffff;
   background: #008cff;
@@ -323,4 +330,4 @@ ol li {
   text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
   box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
     0 0 100px #008cff;
-} */
+} 
