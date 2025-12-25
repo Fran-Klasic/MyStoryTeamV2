@@ -9,6 +9,7 @@
   --background-color-text: rgb(255, 255, 255);
   --border-color: rgb(15, 166, 221);
   --button-color: rgb(69, 0, 218);
+  --list-background: #cceaf9;
 
   --font-title: 50px;
   --font-h1: 50px;
@@ -22,6 +23,11 @@
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--background-color);
 }
@@ -228,6 +234,14 @@ section {
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s ease;
+  scroll-margin-top: 160px;
+}
+
+section h2 {
+        font-size: 2.3rem;
+        margin-bottom: 1rem;
+        border-left: 6px solid var(--button-color);
+        padding-left: 1rem;
 }
 
 section.visible {
@@ -262,13 +276,15 @@ h2 {
   border: 2px solid var(--border-color);
 } */
 
-/* 
+ 
 ol {
   font-size: var(--font-normal);
+  background-color: var(--list-background);
+  list-style-type: disc;
 }
 
 ol li {
-  background-color: var(--background-color);
+  background-color: var(--list-background);
 }
 
 .button1 {
@@ -333,9 +349,9 @@ ol li {
   transition: 0.5s ease;
   user-select: none;
   margin-left: 7%;
-} */
+} /*k*/
 
-/* #btn:hover,
+ #btn:hover,
 :focus {
   color: #ffffff;
   background: #008cff;
@@ -343,4 +359,4 @@ ol li {
   text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
   box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
     0 0 100px #008cff;
-} */
+} 
