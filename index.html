@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Story Team</title>
     <link rel="stylesheet" href="css/style.css" />
-    <script src="dist/main.js"></script>
+    <script src="dist/main.js" defer></script>
   </head>
 
   <body>
@@ -25,6 +25,7 @@
     </header>
 
     <main>
+      <div class="main-bg"></div>
       <section id="Overview">
         <h2 class="font-dark">Overview</h2>
         <p>
@@ -101,21 +102,24 @@
     </main>
     <footer></footer>
     <script>
-  const sections = document.querySelectorAll("section");
+      const sections = document.querySelectorAll("section");
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, {
-    threshold: 0.2
-  });
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+        }
+      );
 
-  sections.forEach(section => {
-    observer.observe(section);
-  });
-</script>
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    </script>
   </body>
 </html>
