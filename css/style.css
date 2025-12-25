@@ -9,6 +9,7 @@
   --background-color-text: rgb(255, 255, 255);
   --border-color: rgb(15, 166, 221);
   --button-color: rgb(69, 0, 218);
+  --list-background: #cceaf9;
 
   --font-title: 50px;
   --font-h1: 50px;
@@ -252,10 +253,12 @@ h2 {
  
 ol {
   font-size: var(--font-normal);
+  background-color: var(--list-background);
+  list-style-type: disc;
 }
 
 ol li {
-  background-color: var(--background-color);
+  background-color: var(--list-background);
 }
 
 .button1 {
