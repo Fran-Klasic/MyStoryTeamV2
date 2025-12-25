@@ -192,31 +192,46 @@ main {
   position: relative;
   width: 60%;
   margin: auto;
-  overflow: hidden;
+  min-height: 100vh;
+  z-index: 1;
 }
+
 .main-bg {
   position: absolute;
-  inset: 0;
-  background-image: url("Images/Poster.png");
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+
+  width: 90vw;
+  height: 100%;
+
+  background-image: url("../Images/Poster.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
-  transition: transform 0.05s linear;
 
-  transform: translateY(0);
   will-change: transform;
   z-index: -1;
 }
-main > * {
-  position: relative;
-  z-index: 1;
-}
+
+/* Dark cinematic overlay */
 .main-bg::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.25);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.5)
+  );
+  pointer-events: none;
 }
+
+main > * {
+  position: relative;
+  z-index: 1;
+}
+
 p {
   padding: 10px;
   background-color: var(--background-color-text);
@@ -238,10 +253,10 @@ section {
 }
 
 section h2 {
-        font-size: 2.3rem;
-        margin-bottom: 1rem;
-        border-left: 6px solid var(--button-color);
-        padding-left: 1rem;
+  font-size: 2.3rem;
+  margin-bottom: 1rem;
+  border-left: 6px solid var(--button-color);
+  padding-left: 1rem;
 }
 
 section.visible {
@@ -276,7 +291,6 @@ h2 {
   border: 2px solid var(--border-color);
 } */
 
- 
 ol {
   font-size: var(--font-normal);
   background-color: var(--list-background);
@@ -351,7 +365,7 @@ ol li {
   margin-left: 7%;
 } /*k*/
 
- #btn:hover,
+#btn:hover,
 :focus {
   color: #ffffff;
   background: #008cff;
@@ -359,4 +373,4 @@ ol li {
   text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
   box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
     0 0 100px #008cff;
-} 
+}

@@ -1,43 +1,40 @@
-const main = document.querySelector<HTMLElement>("main");
-const bg = document.querySelector<HTMLElement>(".main-bg");
+const initParallax = (): void => {
+  const main = document.querySelector<HTMLElement>("main");
+  const bg = document.querySelector<HTMLElement>(".main-bg");
 
-if (!main || !bg) {
-  throw new Error("Parallax elements not found in DOM");
-}
+  if (!main || !bg) return;
 
-const updateParallax = (): void => {
-  const rect: DOMRect = main.getBoundingClientRect();
-  const viewportHeight: number = window.innerHeight;
+  let currentY = 0;
+  let targetY = 0;
+  const SMOOTHNESS = 0.08;
 
-  // How much of <main> has entered the viewport
-  const scrollProgress: number =
-    (viewportHeight - rect.top) / (viewportHeight + rect.height);
+  const clamp = (v: number, min: number, max: number): number =>
+    Math.min(Math.max(v, min), max);
 
-  // Clamp between 0 and 1
-  const clamped: number = Math.min(Math.max(scrollProgress, 0), 1);
+  const updateTarget = (): void => {
+    const rect = main.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
 
-  // Dynamic movement based on content height
-  const maxTranslate: number = rect.height * 0.25;
-  const translateY: number = clamped * maxTranslate;
+    // Sync height
+    bg.style.height = `${rect.height}px`;
 
-  bg.style.transform = `translateY(${translateY}px)`;
+    const progress =
+      (viewportHeight - rect.top) / (viewportHeight + rect.height);
+
+    targetY = clamp(progress, 0, 1) * rect.height * 0.25;
+  };
+
+  const animate = (): void => {
+    currentY += (targetY - currentY) * SMOOTHNESS;
+    bg.style.transform = `translateX(-50%) translateY(${currentY}px)`;
+    requestAnimationFrame(animate);
+  };
+
+  window.addEventListener("scroll", updateTarget, { passive: true });
+  window.addEventListener("resize", updateTarget);
+
+  updateTarget();
+  animate();
 };
 
-window.addEventListener("scroll", updateParallax, { passive: true });
-window.addEventListener("resize", updateParallax);
-
-updateParallax();
-
-let ticking = false;
-
-const onScroll = (): void => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      updateParallax();
-      ticking = false;
-    });
-    ticking = true;
-  }
-};
-
-window.addEventListener("scroll", onScroll, { passive: true });
+initParallax();
