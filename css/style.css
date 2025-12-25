@@ -46,6 +46,7 @@ nav {
   grid-row-gap: 0px;
   padding: 0 10px;
   padding-bottom: 20px;
+  
 }
 
 .select {
@@ -179,6 +180,7 @@ header {
   top: 0;
   background-color: var(--primary-color);
   backdrop-filter: blur(8px);
+  z-index: 13131;
 }
 main {
   width: 60%;
