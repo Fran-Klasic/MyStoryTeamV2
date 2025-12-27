@@ -1,0 +1,17 @@
+:root {
+  --header-height: 5.625rem; /* 90px */
+}
+header {
+  height: var(--header-height);
+}
+main {
+  width: 100%;
+  overflow: hidden;
+}
+.board {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 48px);
+  background-image: radial-gradient(#6b6b6b 2px, transparent 0);
+  background-size: 36px 36px;
+}
