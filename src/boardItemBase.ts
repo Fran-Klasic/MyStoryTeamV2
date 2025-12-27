@@ -14,12 +14,12 @@ type BoardItemBase = {
 
 type SectionBoardItem = BoardItemBase & {
   type: "section";
-  containerData: BoardItemType;
+  sectionData: BoardItemType;
 };
 
 type NonSectionBoardItem = BoardItemBase & {
   type: Exclude<BoardItemType, "section">;
-  containerData?: never;
+  sectionData?: never;
 };
 
 export type BoardItem = SectionBoardItem | NonSectionBoardItem;
