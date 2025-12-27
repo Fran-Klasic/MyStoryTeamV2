@@ -9,19 +9,18 @@
   --background-color-text: rgba(255, 255, 255, 0.7);
   --border-color: rgb(15, 166, 221);
   --button-color: rgb(69, 0, 218);
-  --list-background: #cceaf9;
 
-  --font-title: 50px;
-  --font-h1: 50px;
-  --font-h2: 40px;
-  --font-normal: 23px;
-  --font-button: 20px;
+  --font-title: 3.125rem; /* 50px */
+  --font-h1: 3.125rem; /* 50px */
+  --font-h2: 2.5rem; /* 40px */
+  --font-normal: 1.4375rem; /* 23px */
+  --font-button: 1.25rem; /* 20px */
 
-  --header-height: 180px;
+  --header-height: 11.25rem; /* 180px */
 }
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -35,16 +34,16 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px;
-  padding: 10px;
+  margin: 0;
+  padding: 0.625rem; /* 10px */
   font-size: var(--font-title);
 }
 .subtitle {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px;
-  padding-bottom: 20px;
+  margin: 0;
+  padding-bottom: 1.25rem; /* 20px */
   font-size: var(--font-normal);
 }
 nav {
@@ -55,15 +54,15 @@ nav {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 10px;
+  grid-column-gap: 0.625rem; /* 10px */
   grid-row-gap: 0px;
-  padding: 0 10px;
-  padding-bottom: 20px;
+  padding: 0 0.625rem; /* 10px */
+  padding-bottom: 1.25rem; /* 20px */
 }
 .select {
   color: var(--font-color-light);
   text-decoration: none;
-  padding: 5px;
+  padding: 0.313rem; /* 5px */
   border-radius: 5px;
   border: 1px solid var(--border-color);
   animation: rgbGlow 5s linear infinite;
@@ -130,7 +129,7 @@ ul {
 .corner {
   position: fixed;
   width: 10%;
-  height: 60px;
+  height: 3.75rem; /* 60px */
   pointer-events: none;
   z-index: 1000;
 }
@@ -189,10 +188,11 @@ body {
 }
 .font-dark {
   color: var(--font-color-dark);
-  line-height: 40px;
+  line-height: 2.5rem;
 }
 header {
   position: sticky;
+  width: 100%;
   top: 0;
   background-color: var(--primary-color);
   backdrop-filter: blur(8px);
