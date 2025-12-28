@@ -11,6 +11,10 @@ type BoardItemBase = {
   data?: string;
   connections: number[][];
 };
+type InputBoardItem = BoardItemBase & {
+  type: "input";
+  checked: boolean;
+};
 
 type SectionBoardItem = BoardItemBase & {
   type: "section";
@@ -18,8 +22,8 @@ type SectionBoardItem = BoardItemBase & {
 };
 
 type NonSectionBoardItem = BoardItemBase & {
-  type: Exclude<BoardItemType, "section">;
+  type: Exclude<BoardItemType, "section" | "input">;
   sectionData?: never;
 };
 
-export type BoardItem = SectionBoardItem | NonSectionBoardItem;
+export type BoardItem = SectionBoardItem | InputBoardItem | NonSectionBoardItem;

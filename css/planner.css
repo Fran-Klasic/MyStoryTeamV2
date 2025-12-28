@@ -5,13 +5,17 @@ header {
   height: var(--header-height);
 }
 main {
-  width: 100%;
   overflow: hidden;
+  width: 2000px;
 }
 .board {
   position: relative;
-  width: 100vw;
   height: calc(100vh - 48px);
   background-image: radial-gradient(#6b6b6b 2px, transparent 0);
   background-size: 36px 36px;
+  height: 2000px;
+}
+.board-item-wrapper {
+  background-color: rgba(33, 33, 33, 0.4);
+  border-radius: 10px;
 }
