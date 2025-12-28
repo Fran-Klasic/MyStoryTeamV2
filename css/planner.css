@@ -4,6 +4,11 @@
 header {
   height: var(--header-height);
 }
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
 main {
   overflow: hidden;
   width: 2000px;
@@ -18,4 +23,11 @@ main {
 .board-item-wrapper {
   background-color: rgba(33, 33, 33, 0.4);
   border-radius: 10px;
+}
+nav {
+  padding-top: calc(var(--header-height) / 2);
+}
+button,
+input {
+  font-size: 20px;
 }

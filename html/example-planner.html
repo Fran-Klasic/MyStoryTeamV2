@@ -12,13 +12,18 @@
   </head>
   <body>
     <header>
-      <button>Add Text</button>
-      <button>Add Task</button>
-      <button>Add List</button>
-      <button>Add Container</button>
-      <button>Add Image</button>
-      <button>Add Video</button>
-      <button>Clear</button>
+      <nav>
+        <button class="select" onclick="startPlacing('textarea')">
+          Add Text
+        </button>
+        <button class="select" onclick="startPlacing('input')">Add Task</button>
+        <button class="select" onclick="startPlacing('ul')">Add List</button>
+        <button class="select" onclick="startPlacing('img')">Add Image</button>
+        <button class="select" onclick="startPlacing('iframe')">
+          Add Video
+        </button>
+        <button class="select">Clear All</button>
+      </nav>
     </header>
     <main>
       <div id="board" class="board"></div>

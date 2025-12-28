@@ -62,6 +62,7 @@ nav {
 }
 .select {
   color: var(--font-color-light);
+  background-color: transparent;
   text-decoration: none;
   padding: 0.313rem; /* 5px */
   border-radius: 5px;
@@ -193,7 +194,7 @@ body {
 }
 header {
   position: sticky;
-  width: 100%;
+  width: 100vw;
   top: 0;
   background-color: var(--primary-color);
   backdrop-filter: blur(8px);

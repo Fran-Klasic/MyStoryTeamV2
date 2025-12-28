@@ -1,4 +1,4 @@
-type BoardItemType = "textarea" | "input" | "ul" | "section" | "img" | "video";
+export type BoardItemType = "textarea" | "input" | "ul" | "img" | "iframe";
 
 type Size = `${number}px` | `${number}%`;
 
@@ -11,19 +11,14 @@ type BoardItemBase = {
   data?: string;
   connections: number[][];
 };
-type InputBoardItem = BoardItemBase & {
+type BoardItemInput = BoardItemBase & {
   type: "input";
   checked: boolean;
 };
 
-type SectionBoardItem = BoardItemBase & {
-  type: "section";
-  sectionData: BoardItemType;
-};
-
-type NonSectionBoardItem = BoardItemBase & {
+type BoardItemNormal = BoardItemBase & {
   type: Exclude<BoardItemType, "section" | "input">;
   sectionData?: never;
 };
 
-export type BoardItem = SectionBoardItem | InputBoardItem | NonSectionBoardItem;
+export type BoardItem = BoardItemInput | BoardItemNormal;
