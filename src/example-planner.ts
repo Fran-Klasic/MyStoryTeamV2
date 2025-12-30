@@ -7,6 +7,8 @@ import { INPUT_WIDTH } from "./planner-base.js";
 import { DEFAULT_WIDTH } from "./planner-base.js";
 import { DEFAULT_HEIGHT } from "./planner-base.js";
 import { EDGE_PADDING } from "./planner-base.js";
+import { clearBoardItems } from "./planner-base.js";
+import { exportBoardToJson } from "./planner-base.js";
 
 let placing = false;
 function startPlacing(type: BoardItemType) {
@@ -64,6 +66,7 @@ function generateItem(
 
   if (type === "input") {
     const item: BoardItem = {
+      id: crypto.randomUUID(),
       type: "input",
       positionX: `${x}px`,
       positionY: `${y}px`,
@@ -79,6 +82,7 @@ function generateItem(
   }
 
   const item: BoardItem = {
+    id: crypto.randomUUID(),
     type,
     positionX: `${x}px`,
     positionY: `${y}px`,
@@ -92,3 +96,5 @@ function generateItem(
 }
 
 (window as any).startPlacing = startPlacing;
+(window as any).clearBoardItems = clearBoardItems;
+(window as any).exportBoardToJson = exportBoardToJson;

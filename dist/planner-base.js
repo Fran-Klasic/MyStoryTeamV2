@@ -12,12 +12,14 @@ export const PLACEHOLDER = "ENTER TEXT...";
 const IMAGE_PLACEHOLDER_SRC = "../Images/CinematicPlannerHelper.png";
 const IFRAME_PLACEHOLDER_SRC = "https://www.youtube.com/embed/oznr-1-poSU";
 const boardItems = [];
+const svgConnections = [];
 export function placeBoardItem(item) {
     const parent = document.getElementById("board");
     if (!parent)
         return;
     const wrapper = document.createElement("div");
     wrapper.classList.add("board-item-wrapper");
+    wrapper.dataset.id = item.id;
     wrapper.style.position = "absolute";
     wrapper.style.left = item.positionX;
     wrapper.style.top = item.positionY;
@@ -32,6 +34,8 @@ export function placeBoardItem(item) {
     applyPlaceholder(el, wrapper, item);
     addResizeHandle(wrapper, item);
     addMoveHandle(wrapper, item);
+    addDeleteHandle(wrapper, item);
+    addConnectionPoints(wrapper, item);
     if (item.type !== "input") {
         wrapper.appendChild(el);
     }
@@ -59,7 +63,7 @@ function applyPlaceholder(el, wrapper, item) {
                 img.src = IMAGE_PLACEHOLDER_SRC;
                 item.data = undefined;
             };
-            const editor = createEditor();
+            const editor = createEditor("img-editor");
             const inputWrapper = document.createElement("div");
             inputWrapper.style.display = "none";
             const input = document.createElement("input");
@@ -105,7 +109,7 @@ function applyPlaceholder(el, wrapper, item) {
                 iframe.src = IFRAME_PLACEHOLDER_SRC;
                 item.data = undefined;
             };
-            const editor = createEditor();
+            const editor = createEditor("iframe-editor");
             const inputWrapper = document.createElement("div");
             inputWrapper.style.display = "none";
             const input = document.createElement("input");
@@ -135,7 +139,7 @@ function applyPlaceholder(el, wrapper, item) {
             let items = item.data ? item.data.split("\n") : [];
             if (items.length === 0)
                 items = ["Item"];
-            const editor = createEditor();
+            const editor = createEditor("ul-editor");
             const addBtn = document.createElement("button");
             addBtn.textContent = "+";
             const removeBtn = document.createElement("button");
@@ -179,23 +183,18 @@ function applyPlaceholder(el, wrapper, item) {
             break;
         }
         case "input": {
-            const container = document.createElement("div");
-            container.style.display = "flex";
-            container.style.alignItems = "center";
-            container.style.gap = "6px";
-            container.style.width = "100%";
-            container.style.height = "100%";
+            wrapper.classList.add("checkbox-wrapper-11");
+            const checkboxId = `task-${item.id}`;
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
+            checkbox.id = checkboxId;
             checkbox.checked = !!item.checked;
-            const label = document.createElement("span");
+            const label = document.createElement("label");
+            label.textContent = item.data ?? item.placeholder ?? PLACEHOLDER;
             label.contentEditable = "true";
-            label.style.flex = "1";
-            label.style.outline = "none";
-            label.textContent = item.data ?? "";
+            label.spellcheck = false;
             function updateStyle() {
                 label.style.textDecoration = checkbox.checked ? "line-through" : "none";
-                label.style.opacity = checkbox.checked ? "0.6" : "1";
             }
             updateStyle();
             checkbox.addEventListener("change", () => {
@@ -205,9 +204,8 @@ function applyPlaceholder(el, wrapper, item) {
             label.addEventListener("input", () => {
                 item.data = label.textContent ?? "";
             });
-            container.appendChild(checkbox);
-            container.appendChild(label);
-            wrapper.appendChild(container);
+            wrapper.appendChild(checkbox);
+            wrapper.appendChild(label);
             break;
         }
         case "textarea": {
@@ -223,6 +221,221 @@ function applyPlaceholder(el, wrapper, item) {
         }
     }
 }
+let dragLine = null;
+let activeConnection = null;
+function createDragLine() {
+    const line = document.createElement("div");
+    line.classList.add("preview-line");
+    document.body.appendChild(line);
+    return line;
+}
+function getOrCreateConnectionSvg() {
+    let svg = document.getElementById("connection-svg");
+    const board = document.getElementById("board");
+    if (!svg) {
+        svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.id = "connection-svg";
+        svg.style.position = "absolute";
+        svg.style.left = "0";
+        svg.style.top = "0";
+        svg.style.width = "100%";
+        svg.style.height = "100%";
+        svg.style.pointerEvents = "none";
+        svg.style.overflow = "visible";
+        board.appendChild(svg);
+    }
+    const width = board.scrollWidth;
+    const height = board.scrollHeight;
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    svg.setAttribute("preserveAspectRatio", "none");
+    return svg;
+}
+function addConnectionPoints(wrapper, item) {
+    const sides = ["top", "right", "bottom", "left"];
+    sides.forEach((side) => {
+        const point = document.createElement("div");
+        point.classList.add("connection-point", side);
+        point.dataset.side = side;
+        styleConnectionPoint(point, side);
+        enableConnectionDrag(point, wrapper, item, side);
+        wrapper.appendChild(point);
+    });
+}
+function styleConnectionPoint(point, side) {
+    point.style.position = "absolute";
+    point.style.width = "10px";
+    point.style.height = "10px";
+    point.style.background = "#ff4757";
+    point.style.borderRadius = "50%";
+    point.style.cursor = "crosshair";
+    switch (side) {
+        case "top":
+            point.style.top = "-5px";
+            point.style.left = "50%";
+            point.style.transform = "translateX(-50%)";
+            break;
+        case "bottom":
+            point.style.bottom = "-5px";
+            point.style.left = "50%";
+            point.style.transform = "translateX(-50%)";
+            break;
+        case "left":
+            point.style.left = "-5px";
+            point.style.top = "50%";
+            point.style.transform = "translateY(-50%)";
+            break;
+        case "right":
+            point.style.right = "-5px";
+            point.style.top = "50%";
+            point.style.transform = "translateY(-50%)";
+            break;
+    }
+}
+function getSidePoint(wrapper, side) {
+    const boardRect = document.getElementById("board").getBoundingClientRect();
+    const rect = wrapper.getBoundingClientRect();
+    switch (side) {
+        case "top":
+            return {
+                x: rect.left + rect.width / 2 - boardRect.left,
+                y: rect.top - boardRect.top,
+            };
+        case "bottom":
+            return {
+                x: rect.left + rect.width / 2 - boardRect.left,
+                y: rect.bottom - boardRect.top,
+            };
+        case "left":
+            return {
+                x: rect.left - boardRect.left,
+                y: rect.top + rect.height / 2 - boardRect.top,
+            };
+        case "right":
+            return {
+                x: rect.right - boardRect.left,
+                y: rect.top + rect.height / 2 - boardRect.top,
+            };
+    }
+}
+function updateSvgConnections() {
+    svgConnections.forEach((c) => {
+        const fromWrapper = document.querySelector(`[data-id="${c.fromItem.id}"]`);
+        if (!fromWrapper)
+            return;
+        const p1 = getSidePoint(fromWrapper, c.fromSide);
+        const p2 = getSidePoint(c.toWrapper, c.toSide);
+        c.line.setAttribute("x1", `${p1.x}`);
+        c.line.setAttribute("y1", `${p1.y}`);
+        c.line.setAttribute("x2", `${p2.x}`);
+        c.line.setAttribute("y2", `${p2.y}`);
+    });
+}
+function enableConnectionDrag(point, wrapper, item, side) {
+    point.addEventListener("mousedown", (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        activeConnection = { fromItem: item, fromSide: side };
+        highlightConnectionTargets(true);
+        dragLine = createDragLine();
+        const startRect = point.getBoundingClientRect();
+        const startX = startRect.left + startRect.width / 2;
+        const startY = startRect.top + startRect.height / 2;
+        function onMouseMove(ev) {
+            if (!dragLine)
+                return;
+            const dx = ev.clientX - startX;
+            const dy = ev.clientY - startY;
+            const length = Math.hypot(dx, dy);
+            const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+            dragLine.style.left = `${startX}px`;
+            dragLine.style.top = `${startY}px`;
+            dragLine.style.width = `${length}px`;
+            dragLine.style.transform = `rotate(${angle}deg)`;
+        }
+        function onMouseUp(ev) {
+            document.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mouseup", onMouseUp);
+            if (dragLine) {
+                dragLine.remove();
+                dragLine = null;
+            }
+            const target = document.elementFromPoint(ev.clientX, ev.clientY);
+            if (target && target.classList.contains("connection-point")) {
+                const targetWrapper = target.parentElement;
+                if (targetWrapper === wrapper) {
+                    console.warn("⛔ Cannot connect item to itself");
+                    return;
+                }
+                const svg = getOrCreateConnectionSvg();
+                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                line.classList.add("connection-line");
+                line.setAttribute("stroke", "#333");
+                line.setAttribute("stroke-width", "2");
+                line.setAttribute("stroke-linecap", "round");
+                svg.appendChild(line);
+                requestAnimationFrame(() => {
+                    line.style.strokeDashoffset = "0";
+                });
+                line.animate([
+                    { strokeDashoffset: "0" },
+                    { strokeDashoffset: "-6" },
+                    { strokeDashoffset: "0" },
+                ], {
+                    duration: 2000,
+                    iterations: Infinity,
+                    easing: "ease-in-out",
+                });
+                svgConnections.push({
+                    line,
+                    fromItem: item,
+                    toWrapper: targetWrapper,
+                    fromSide: side,
+                    toSide: target.dataset.side,
+                });
+                updateSvgConnections();
+                const x = targetWrapper.offsetLeft;
+                const y = targetWrapper.offsetTop;
+                const toItem = boardItems.find((bi) => bi !== item && bi.positionX === `${targetWrapper.offsetLeft}px`);
+                if (!toItem)
+                    return;
+                item.connections.push({
+                    toId: toItem.id,
+                    fromSide: side,
+                    toSide: target.dataset.side,
+                });
+                console.log("🔗 Connection created", {
+                    from: item.id,
+                    to: toItem.id,
+                });
+            }
+            activeConnection = null;
+            clearConnectionHover();
+        }
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+    });
+}
+function highlightConnectionTargets(enable) {
+    document.querySelectorAll(".connection-point").forEach((p) => {
+        const el = p;
+        el.style.background = enable ? "#2ed573" : "#ff4757";
+    });
+}
+function clearConnectionHover() {
+    highlightConnectionTargets(false);
+}
+document.addEventListener("mouseover", (e) => {
+    const t = e.target;
+    if (t.classList.contains("connection-point")) {
+        t.style.transform += " scale(1.3)";
+    }
+});
+document.addEventListener("mouseout", (e) => {
+    const t = e.target;
+    if (t.classList.contains("connection-point")) {
+        t.style.transform = t.style.transform.replace(" scale(1.3)", "");
+    }
+});
 function disableIframeInteraction(wrapper) {
     const iframe = wrapper.querySelector("iframe");
     if (iframe)
@@ -263,14 +476,15 @@ function isValidImageUrl(value) {
         return false;
     }
 }
-function createEditor() {
+function createEditor(extraClass) {
     const editor = document.createElement("div");
+    editor.classList.add("board-item-editor");
+    if (extraClass)
+        editor.classList.add(extraClass);
     editor.style.position = "absolute";
     editor.style.left = "0";
     editor.style.bottom = "-28px";
     editor.style.width = "100%";
-    editor.style.background = "#f1f1f1";
-    editor.style.border = "1px solid #ccc";
     editor.style.fontSize = "12px";
     editor.style.padding = "2px";
     editor.style.boxSizing = "border-box";
@@ -313,6 +527,44 @@ function enableImageDrop(img, item, urlInput) {
         }
     });
 }
+function deleteBoardItem(wrapper, item) {
+    for (let i = svgConnections.length - 1; i >= 0; i--) {
+        const c = svgConnections[i];
+        if (c.fromItem === item || c.toWrapper === wrapper) {
+            c.line.remove();
+            svgConnections.splice(i, 1);
+        }
+    }
+    boardItems.forEach((bi) => {
+        if (!bi.connections)
+            return;
+        bi.connections = bi.connections.filter((conn) => conn.toId !== item.id);
+    });
+    const index = boardItems.indexOf(item);
+    if (index !== -1) {
+        boardItems.splice(index, 1);
+    }
+    wrapper.remove();
+    updateSvgConnections();
+}
+function addDeleteHandle(wrapper, item) {
+    const handle = document.createElement("div");
+    handle.style.position = "absolute";
+    handle.style.left = "0";
+    handle.style.top = "0";
+    handle.style.width = "14px";
+    handle.style.height = "14px";
+    handle.style.background = "#e74c3c";
+    handle.style.cursor = "pointer";
+    handle.style.borderBottomRightRadius = "6px";
+    handle.title = "Delete";
+    handle.addEventListener("mousedown", (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        deleteBoardItem(wrapper, item);
+    });
+    wrapper.appendChild(handle);
+}
 function addResizeHandle(wrapper, item) {
     const handle = document.createElement("div");
     handle.style.position = "absolute";
@@ -323,8 +575,8 @@ function addResizeHandle(wrapper, item) {
     handle.style.cursor = "se-resize";
     handle.style.background = "#555";
     handle.style.borderTopLeftRadius = "25px";
-    // handle.style.zIndex = "10";
     handle.style.pointerEvents = "auto";
+    handle.title = "Resize";
     wrapper.appendChild(handle);
     enableResize(wrapper, handle, item);
 }
@@ -364,6 +616,7 @@ function enableResize(wrapper, handle, item) {
         wrapper.style.height = `${newHeight}px`;
         item.defWidth = `${newWidth}px`;
         item.defHeight = `${newHeight}px`;
+        updateSvgConnections();
     }
     function onMouseUp() {
         document.body.style.userSelect = "";
@@ -382,7 +635,7 @@ function addMoveHandle(wrapper, item) {
     handle.style.cursor = "move";
     handle.style.background = "#2c7be5";
     handle.style.borderBottomLeftRadius = "6px";
-    // handle.style.zIndex = "10";
+    handle.title = "Move";
     wrapper.appendChild(handle);
     enableMove(wrapper, handle, item);
 }
@@ -418,6 +671,7 @@ function enableMove(wrapper, handle, item) {
         wrapper.style.top = `${newTop}px`;
         item.positionX = `${newLeft}px`;
         item.positionY = `${newTop}px`;
+        updateSvgConnections();
     }
     function onMouseUp() {
         document.body.style.userSelect = "";
@@ -426,38 +680,80 @@ function enableMove(wrapper, handle, item) {
         document.removeEventListener("mouseup", onMouseUp);
     }
 }
-// const textItem: BoardItem = {
-//   type: "iframe",
-//   positionX: "50px",
-//   positionY: "10px",
-//   defWidth: "400px",
-//   defHeight: "300px",
-//   placeholder: PLACEHOLDER,
-//   data: "https://www.youtube.com/watch?v=sO26X7Tpcm4",
-//   connections: [],
-// };
-// placeBoardItem(textItem);
-// setInterval(() => {
-//   console.log("📋 Board Items Snapshot");
-//   boardItems.forEach((item, index) => {
-//     const base = {
-//       index: index + 1,
-//       type: item.type,
-//       positionX: item.positionX,
-//       positionY: item.positionY,
-//       width: item.defWidth,
-//       height: item.defHeight,
-//       data: item.data,
-//       connections: item.connections,
-//     };
-//     if (item.type === "input") {
-//       console.log({
-//         ...base,
-//         checked: item.checked,
-//       });
-//     } else {
-//       console.log(base);
-//     }
-//   });
-// }, 2000);
+export function clearBoardItems() {
+    const wrappers = document.querySelectorAll(".board-item-wrapper");
+    wrappers.forEach((w) => w.remove());
+    svgConnections.forEach((c) => c.line.remove());
+    svgConnections.length = 0;
+    boardItems.length = 0;
+    document.getElementById("connection-svg")?.remove();
+    console.log("Board cleared (memory + DOM)");
+}
+export function exportBoardToJson(filename = "board-export.json") {
+    const data = {
+        meta: {
+            exportedAt: new Date().toISOString(),
+            version: 1,
+        },
+        items: boardItems.map((item) => ({
+            id: item.id,
+            type: item.type,
+            positionX: item.positionX,
+            positionY: item.positionY,
+            width: item.defWidth,
+            height: item.defHeight,
+            data: item.data ?? null,
+            placeholder: item.placeholder ?? null,
+            checked: "checked" in item ? item.checked : null,
+            connections: item.connections ?? [],
+        })),
+        connections: svgConnections.map((c) => ({
+            fromId: c.fromItem.id,
+            toId: c.toWrapper.dataset.id,
+            fromSide: c.fromSide,
+            toSide: c.toSide,
+        })),
+    };
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+    console.log("Board exported to JSON");
+}
+document.addEventListener("keydown", (e) => {
+    if (e.key.toLowerCase() === "i") {
+        debugDumpBoardItems();
+    }
+});
+function debugDumpBoardItems() {
+    const snapshot = boardItems.map((item) => ({
+        id: item.id,
+        type: item.type,
+        position: {
+            x: item.positionX,
+            y: item.positionY,
+        },
+        size: {
+            width: item.defWidth,
+            height: item.defHeight,
+        },
+        data: item.data ?? null,
+        checked: "checked" in item ? item.checked : null,
+        connections: item.connections
+            ? item.connections.map((c) => ({
+                toId: c.toId,
+                fromSide: c.fromSide,
+                toSide: c.toSide,
+            }))
+            : [],
+    }));
+    console.group("Board Items Dump");
+    console.log(snapshot);
+    console.groupEnd();
+    return snapshot;
+}
 //# sourceMappingURL=planner-base.js.map
