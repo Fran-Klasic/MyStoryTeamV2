@@ -1,3 +1,29 @@
+:root {
+  --primary-color: rgba(0, 0, 0, 0.8);
+  --secondary-color: rgba(106, 117, 132, 0.75);
+  --tertiary-color: rgb(39, 181, 203);
+  --accent-color: rgb(137, 232, 222);
+  --font-color-light: rgb(229, 255, 252);
+  --font-color-dark: rgb(35, 35, 35);
+  --background-color: rgb(223, 252, 253);
+  --background-color-text: rgba(255, 255, 255, 0.7);
+  --border-color: rgb(15, 166, 221);
+  --button-color: rgb(69, 0, 218);
+
+  --font-title: 3.125rem; /* 50px */
+  --font-h1: 3.125rem; /* 50px */
+  --font-h2: 2.5rem; /* 40px */
+  --font-normal: 1.4375rem; /* 23px */
+  --font-button: 1.25rem; /* 20px */
+
+  --header-height: 11.25rem; /* 180px */
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
 html {
   scroll-behavior: smooth;
 }

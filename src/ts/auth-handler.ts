@@ -1,5 +1,24 @@
 import { api } from "./api/api-handler";
 
+async function handleLogin(e: SubmitEvent) {
+  e.preventDefault();
+  const formTarget: any = e.target;
+
+  if (formTarget == null) {
+    console.error("No form target!");
+    return;
+  }
+
+  const request = {
+    email: formTarget["email"]?.value?.trim(),
+    password: formTarget["password"]?.value?.trim(),
+  };
+
+  const response = await api.post("api/auth/login", request);
+
+  console.info("LOGIN", request, response);
+}
+
 async function handleRegistration(e: SubmitEvent) {
   e.preventDefault();
   const formTarget: any = e.target;
@@ -16,28 +35,19 @@ async function handleRegistration(e: SubmitEvent) {
     repeatPassword: formTarget["repeat-password"]?.value?.trim(),
   };
 
-  console.info("Submit2: ", request);
-
+  // TODO: Validacija
   // ==> Validacija na frontendu
   // ==> Kraj validacije :)
 
   const response = await api.post("api/auth/register", request);
 
-  console.info(response);
+  console.info("REGISTER", request, response);
 }
 
-// const loginForm = document.getElementById("login-form") as HTMLFormElement;
+const loginForm = document.getElementById("login-form") as HTMLFormElement;
 const registerForm = document.getElementById(
   "register-form",
 ) as HTMLFormElement;
 
+loginForm?.addEventListener("submit", handleLogin);
 registerForm?.addEventListener("submit", handleRegistration);
-
-console.info("ASADASDdasdASD");
-const response = await api.get("api/test");
-
-console.info(response);
-
-const text = await response.text();
-
-console.info(text);
