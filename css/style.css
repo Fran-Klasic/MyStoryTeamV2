@@ -1,30 +1,3 @@
-:root {
-  --primary-color: rgba(0, 0, 0, 0.8);
-  --secondary-color: rgba(106, 117, 132, 0.75);
-  --tertiary-color: rgb(39, 181, 203);
-  --accent-color: rgb(137, 232, 222);
-  --font-color-light: rgb(229, 255, 252);
-  --font-color-dark: rgb(35, 35, 35);
-  --background-color: rgb(223, 252, 253);
-  --background-color-text: rgba(255, 255, 255, 0.7);
-  --border-color: rgb(15, 166, 221);
-  --button-color: rgb(69, 0, 218);
-
-  --font-title: 3.125rem; /* 50px */
-  --font-h1: 3.125rem; /* 50px */
-  --font-h2: 2.5rem; /* 40px */
-  --font-normal: 1.4375rem; /* 23px */
-  --font-button: 1.25rem; /* 20px */
-
-  --header-height: 11.25rem; /* 180px */
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -70,7 +43,9 @@ nav {
   animation: rgbGlow 5s linear infinite;
   overflow: hidden;
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .select:hover {
   transform: translateY(-1px);
@@ -183,7 +158,10 @@ ul {
 }
 body {
   margin: 0;
-  font: normal 75% Arial, Helvetica, sans-serif;
+  font:
+    normal 75% Arial,
+    Helvetica,
+    sans-serif;
 }
 .font-light {
   color: var(--font-color-light);
@@ -291,8 +269,14 @@ section h2 {
   color: #ffffff;
   background: #008cff;
   border: 1px solid #008cff;
-  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
-  box-shadow: 0 0 5px #008cff, 0 0 20px #008cff, 0 0 50px #008cff,
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff;
+  box-shadow:
+    0 0 5px #008cff,
+    0 0 20px #008cff,
+    0 0 50px #008cff,
     0 0 100px #008cff;
 }
 @media (max-width: 768px) {

@@ -1,0 +1,57 @@
+.main-card {
+  max-width: 350px;
+  margin: auto;
+
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.main-card header {
+  font-size: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
+
+.form {
+  display: grid;
+  gap: 8px;
+}
+
+.form-field {
+  display: grid;
+}
+
+.form-field input {
+  padding: 4px 8px;
+}
+
+.form-buttons {
+  border-top: 1px solid var(--border-color);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-buttons button {
+  display: block;
+  text-align: center;
+
+  padding: 0.6em 0.8em;
+  border-radius: 0.5em;
+  border: none;
+
+  background-color: var(--button-color);
+  color: var(--font-color-light);
+  text-decoration: none;
+
+  cursor: pointer;
+  box-shadow: 2px 2px 3px #000000b4;
+}
