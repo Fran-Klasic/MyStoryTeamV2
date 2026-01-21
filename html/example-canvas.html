@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Story Team - Example Planner</title>
+    <link rel="stylesheet" href="/src/css/_layer_canvas.css" />
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/style.css" />
+    <link rel="stylesheet" href="/src/css/canvas.css" />
+
+    <script src="/src/ts/canvas-base.ts" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <button class="select" title="Add Text">
+          <img src="/public/assets/icons/text.svg" alt="Text" />
+        </button>
+        <button class="select" title="Add Task">
+          <img src="/public/assets/icons/task-checklist.svg" alt="Task" />
+        </button>
+        <button class="select" title="Add List">
+          <img src="/public/assets/icons/rectangle-list.svg" alt="List" />
+        </button>
+        <button class="select" title="Add Image">
+          <img src="/public/assets/icons/graphic-style.svg" alt="Image" />
+        </button>
+        <button class="select" title="Add Video">
+          <img src="/public/assets/icons/screen-play.svg" alt="Video" />
+        </button>
+        <button class="select" title="Add Audio">
+          <img src="/public/assets/icons/music-file.svg" alt="Audio" />
+        </button>
+        <button class="select" title="Add Date">
+          <img src="/public/assets/icons/calendar-clock.svg" alt="Date" />
+        </button>
+        <button class="select" title="Add Container">
+          <img src="/public/assets/icons/apps.svg" alt="Container" />
+        </button>
+        <button class="select" title="Clear">
+          <img src="/public/assets/icons/trash.svg" alt="Clear" />
+        </button>
+      </nav>
+    </header>
+
+    <div class="divider"></div>
+
+    <main>
+      <div id="canvas" class="window"></div>
+    </main>
+  </body>
+</html>

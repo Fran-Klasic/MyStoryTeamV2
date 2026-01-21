@@ -21,9 +21,7 @@
     padding-bottom: 20px;
     font-size: var(--font-normal);
   }
-  img {
-    width: 100%;
-  }
+
   nav {
     max-width: 1000px;
     margin: auto;
@@ -183,6 +181,51 @@
     backdrop-filter: blur(8px);
     z-index: 13131;
   }
+  footer {
+    width: 100%;
+    min-height: var(--footer-height);
+    background-color: var(--primary-color);
+    backdrop-filter: blur(8px);
+
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+
+    padding: 2rem 2rem;
+
+    color: var(--font-color-light);
+    font-size: var(--font-small);
+
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+
+    position: relative;
+    bottom: 0;
+    z-index: 13131;
+  }
+  footer > div {
+    flex: 1;
+  }
+  .footer-center {
+    text-align: center;
+  }
+  .footer-right {
+    text-align: right;
+  }
+  @media (max-width: 768px) {
+    footer {
+      flex-direction: column;
+      gap: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    footer > div {
+      text-align: center;
+    }
+  }
+  footer {
+    border-top: 2px solid var(--accent-color);
+  }
   .divider {
     height: calc(var(--header-height) + 25px);
   }
@@ -194,10 +237,6 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
-  }
-
-  main * {
-    margin: 0 10px;
   }
 
   /* SVE NAKON H2 U SECTION */
@@ -389,6 +428,9 @@
       0 0 100px #008cff;
   }
 
+  img {
+    width: 100%;
+  }
   @media (max-width: 768px) {
     nav {
       grid-template-columns: repeat(3, 1fr);
