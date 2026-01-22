@@ -16,4 +16,8 @@ export class Vector3Int {
   equals(v: Vector3Int): boolean {
     return this.x == v.x && this.y == v.y && this.z == v.z;
   }
+
+  zero(): Vector3Int {
+    return new Vector3Int(0, 0, 0);
+  }
 }

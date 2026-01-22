@@ -1,3 +1,4 @@
+import type { Vector2Int } from "../vector2int";
 import type { Vector3Int } from "../vector3int";
 
 export type ID = string;
@@ -8,6 +9,7 @@ export type CanvasElement =
       readonly type: "Text";
       data: string;
       position: Vector3Int;
+      size: Vector2Int;
       connections: Connection[];
     }
   | {
@@ -15,6 +17,7 @@ export type CanvasElement =
       readonly type: "List";
       data: ListData;
       position: Vector3Int;
+      size: Vector2Int;
       connections: Connection[];
     }
   | {
@@ -22,6 +25,7 @@ export type CanvasElement =
       readonly type: "Image";
       data: ImageData;
       position: Vector3Int;
+      size: Vector2Int;
       connections: Connection[];
     }
   | {
@@ -29,6 +33,7 @@ export type CanvasElement =
       readonly type: "Audio";
       data: AudioData;
       position: Vector3Int;
+      size: Vector2Int;
       connections: Connection[];
     }
   | {
@@ -36,6 +41,7 @@ export type CanvasElement =
       readonly type: "Task";
       data: TaskData;
       position: Vector3Int;
+      size: Vector2Int;
       connections: Connection[];
     }
   | {
@@ -43,6 +49,7 @@ export type CanvasElement =
       readonly type: "Date";
       data: DateData;
       position: Vector3Int;
+      size: Vector2Int;
       connections: Connection[];
     }
   | {
@@ -50,6 +57,7 @@ export type CanvasElement =
       readonly type: "Video";
       data: VideoData;
       position: Vector3Int;
+      size: Vector2Int;
       connections: Connection[];
     }
   | {
@@ -57,6 +65,7 @@ export type CanvasElement =
       readonly type: "Container";
       data: CanvasElement[];
       position: Vector3Int;
+      size: Vector2Int;
       connections: Connection[];
     };
 
@@ -65,7 +74,7 @@ export type VideoData = {
 };
 
 export type ListData = {
-  data: string[];
+  listData: string[];
 };
 export type ImageData = {
   base64File: string;
