@@ -16,11 +16,15 @@
     --font-h2: 40px;
     --font-normal: 23px;
     --font-small: 15px;
+    --font-mini: 12px;
     --font-button: 20px;
 
     --footer-height: 50px;
     --header-height: 180px;
     --header-height-canvas: 100px;
+
+    --aside-width: 75px;
+    --canvas-header-height: 50px;
   }
   * {
     margin: 0;

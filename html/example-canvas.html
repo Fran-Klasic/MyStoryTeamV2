@@ -2,52 +2,69 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>My Story Team - Example Planner</title>
     <link rel="stylesheet" href="/src/css/_layer_canvas.css" />
     <link rel="stylesheet" href="/src/css/base.css" />
-    <link rel="stylesheet" href="/src/css/style.css" />
     <link rel="stylesheet" href="/src/css/canvas.css" />
 
     <script src="/src/ts/canvas-base.ts" type="module"></script>
   </head>
   <body>
     <header>
-      <nav>
-        <button class="select" title="Add Text">
-          <img src="/public/assets/icons/text.svg" alt="Text" />
-        </button>
-        <button class="select" title="Add Task">
-          <img src="/public/assets/icons/task-checklist.svg" alt="Task" />
-        </button>
-        <button class="select" title="Add List">
-          <img src="/public/assets/icons/rectangle-list.svg" alt="List" />
-        </button>
-        <button class="select" title="Add Image">
-          <img src="/public/assets/icons/graphic-style.svg" alt="Image" />
-        </button>
-        <button class="select" title="Add Video">
-          <img src="/public/assets/icons/screen-play.svg" alt="Video" />
-        </button>
-        <button class="select" title="Add Audio">
-          <img src="/public/assets/icons/music-file.svg" alt="Audio" />
-        </button>
-        <button class="select" title="Add Date">
-          <img src="/public/assets/icons/calendar-clock.svg" alt="Date" />
-        </button>
-        <button class="select" title="Add Container">
-          <img src="/public/assets/icons/apps.svg" alt="Container" />
-        </button>
-        <button class="select" title="Clear">
-          <img src="/public/assets/icons/trash.svg" alt="Clear" />
-        </button>
-      </nav>
+      <div class="left">
+        <div>
+          <a href="/index.html">Home</a>
+        </div>
+        <!-- Add more -->
+      </div>
+
+      <div class="right">
+        <div>
+          <a href="">Help</a>
+        </div>
+        <!-- Add more -->
+      </div>
     </header>
-
-    <div class="divider"></div>
-
+    <aside>
+      <button class="element-holder">
+        <img src="/public/assets/icons/text.svg" alt="Add Text" />
+        <p>Add Text</p>
+      </button>
+      <button class="element-holder">
+        <img src="/public/assets/icons/rectangle-list.svg" alt="Add List" />
+        <p>Add List</p>
+      </button>
+      <button class="element-holder">
+        <img src="/public/assets/icons/task-checklist.svg" alt="Add Task" />
+        <p>Add Task</p>
+      </button>
+      <button class="element-holder">
+        <img src="/public/assets/icons/graphic-style.svg" alt="Add Image" />
+        <p>Add Image</p>
+      </button>
+      <button class="element-holder">
+        <img src="/public/assets/icons/music-file.svg" alt="Add Audio" />
+        <p>Add Audio</p>
+      </button>
+      <button class="element-holder">
+        <img src="/public/assets/icons/screen-play.svg" alt="Add Video" />
+        <p>Add Video</p>
+      </button>
+      <button class="element-holder">
+        <img src="/public/assets/icons/calendar-clock.svg" alt="Add Date" />
+        <p>Add Date</p>
+      </button>
+      <button class="element-holder">
+        <img src="/public/assets/icons/apps.svg" alt="Add Container" />
+        <p>Add Container</p>
+      </button>
+    </aside>
     <main>
-      <div id="canvas" class="window"></div>
+      <div class="canvas-viewport" id="canvas"></div>
     </main>
   </body>
 </html>
