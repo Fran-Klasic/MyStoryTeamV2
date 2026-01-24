@@ -1,0 +1,69 @@
+{
+  "exportedAt": "2026-01-24T17:12:50.298Z",
+  "elements": [
+    {
+      "id": "265c432a-3fec-438a-83d6-12e26444fdcc",
+      "type": "Text",
+      "data": "",
+      "position": {
+        "x": 410,
+        "y": 175,
+        "z": 1
+      },
+      "size": {
+        "x": 260,
+        "y": 160
+      },
+      "connections": [
+        {
+          "self": "265c432a-3fec-438a-83d6-12e26444fdcc",
+          "target": "a142ddab-9f34-4ac8-81b8-f9484b52628c"
+        }
+      ]
+    },
+    {
+      "id": "442cf6c6-8839-43b0-8b79-6963f8f2a2d6",
+      "type": "List",
+      "data": {
+        "listData": [
+          "asd111",
+          "asdasd",
+          ""
+        ]
+      },
+      "position": {
+        "x": 354,
+        "y": 470,
+        "z": 1
+      },
+      "size": {
+        "x": 260,
+        "y": 160
+      },
+      "connections": []
+    },
+    {
+      "id": "a142ddab-9f34-4ac8-81b8-f9484b52628c",
+      "type": "Task",
+      "data": {
+        "data": "asdasdasd",
+        "checked": true
+      },
+      "position": {
+        "x": 835,
+        "y": 277,
+        "z": 1
+      },
+      "size": {
+        "x": 260,
+        "y": 160
+      },
+      "connections": [
+        {
+          "self": "a142ddab-9f34-4ac8-81b8-f9484b52628c",
+          "target": "442cf6c6-8839-43b0-8b79-6963f8f2a2d6"
+        }
+      ]
+    }
+  ]
+}

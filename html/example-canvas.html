@@ -29,40 +29,38 @@
         <!-- Add more -->
       </div>
     </header>
-    <aside>
-      <button class="element-holder" id="text">
+    <aside id="aside">
+      <button class="element-holder" id="text" data-type="Text">
         <img src="/public/assets/icons/text.svg" alt="Add Text" />
         <p>Add Text</p>
       </button>
-      <button class="element-holder" id="list">
+      <button class="element-holder" id="list" data-type="List">
         <img src="/public/assets/icons/rectangle-list.svg" alt="Add List" />
         <p>Add List</p>
       </button>
-      <button class="element-holder" id="task">
+      <button class="element-holder" id="task" data-type="Task">
         <img src="/public/assets/icons/task-checklist.svg" alt="Add Task" />
         <p>Add Task</p>
       </button>
-      <button class="element-holder" id="image">
+      <button class="element-holder" id="image" data-type="Image">
         <img src="/public/assets/icons/graphic-style.svg" alt="Add Image" />
         <p>Add Image</p>
       </button>
-      <button class="element-holder" id="audio">
+      <button class="element-holder" id="audio" data-type="Audio">
         <img src="/public/assets/icons/music-file.svg" alt="Add Audio" />
         <p>Add Audio</p>
       </button>
-      <button class="element-holder" id="video">
+      <button class="element-holder" id="video" data-type="Video">
         <img src="/public/assets/icons/screen-play.svg" alt="Add Video" />
         <p>Add Video</p>
       </button>
-      <button class="element-holder" id="date">
+      <button class="element-holder" id="date" data-type="Date">
         <img src="/public/assets/icons/calendar-clock.svg" alt="Add Date" />
         <p>Add Date</p>
       </button>
-      <button class="element-holder" id="container">
-        <img src="/public/assets/icons/apps.svg" alt="Add Container" />
-        <p>Add Container</p>
-      </button>
     </aside>
-    <div class="canvas-viewport" id="canvas"></div>
+    <div class="canvas-viewport" id="canvas">
+      <svg id="connection-layer"></svg>
+    </div>
   </body>
 </html>

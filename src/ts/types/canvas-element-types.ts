@@ -59,20 +59,11 @@ export type CanvasElement =
       position: Vector3Int;
       size: Vector2Int;
       connections: Connection[];
-    }
-  | {
-      readonly id: ID;
-      readonly type: "Container";
-      data: CanvasElement[];
-      position: Vector3Int;
-      size: Vector2Int;
-      connections: Connection[];
     };
 
 export type VideoData = {
   url: string;
 };
-
 export type ListData = {
   listData: string[];
 };
