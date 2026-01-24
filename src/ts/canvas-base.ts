@@ -28,7 +28,7 @@ window.exportCanvasMemoryJSON = exportCanvasMemoryJSON;
 export function exportCanvasMemoryJSON(filename = "canvas-memory.json") {
   const data = {
     exportedAt: new Date().toISOString(),
-    elements: CanvasMemory,
+    elements: Array.isArray(CanvasMemory) ? CanvasMemory : [],
   };
 
   const json = JSON.stringify(data, null, 2);
