@@ -45,7 +45,27 @@ export const api = {
       fetchRequest.body = JSON.stringify(body);
     }
 
+    const accessToken = accessTokenHandler.getToken();
+
+    if (accessToken != null) {
+      (fetchRequest.headers as any)["Authorization"] = `Bearer ${accessToken}`;
+    }
+
     const response = await fetch(fullUrl, fetchRequest);
     return response;
+  },
+};
+
+const TOKEN_KEY = "accessTokenKey";
+
+export const accessTokenHandler = {
+  setToken(token: string) {
+    window.sessionStorage.setItem(TOKEN_KEY, token);
+  },
+  getToken(): string | null {
+    return window.sessionStorage.getItem(TOKEN_KEY);
+  },
+  clearToken() {
+    window.sessionStorage.removeItem(TOKEN_KEY);
   },
 };

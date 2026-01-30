@@ -1,4 +1,4 @@
-import { api } from "./api/api-handler";
+import { accessTokenHandler, api } from "./api/api-handler";
 
 async function handleLogin(e: SubmitEvent) {
   e.preventDefault();
@@ -16,7 +16,16 @@ async function handleLogin(e: SubmitEvent) {
 
   const response = await api.post("api/auth/login", request);
 
-  console.info("LOGIN", request, response);
+  if (response.ok) {
+    const token = (await response.text()).replaceAll('"', "");
+    accessTokenHandler.setToken(token);
+
+    window.location.href = "/html/auth/index.html";
+
+    console.info("LOGIN", request, token); //------------------------------------------------
+  } else {
+    alert("Invalid credentials!");
+  }
 }
 
 async function handleRegistration(e: SubmitEvent) {
@@ -35,13 +44,16 @@ async function handleRegistration(e: SubmitEvent) {
     repeatPassword: formTarget["repeat-password"]?.value?.trim(),
   };
 
-  // TODO: Validacija
-  // ==> Validacija na frontendu
-  // ==> Kraj validacije :)
+  // TODO: VALIDATE
 
   const response = await api.post("api/auth/register", request);
 
-  console.info("REGISTER", request, response);
+  if (response.ok) {
+    alert("Registration successful! Please log in to continue!");
+    window.location.href = "/html/sign.html";
+  } else {
+    alert("Email is already in use!");
+  }
 }
 
 const loginForm = document.getElementById("login-form") as HTMLFormElement;

@@ -6,6 +6,9 @@
     <title>My Story Team - Register</title>
     <link rel="stylesheet" href="/src/css/base.css" />
     <link rel="stylesheet" href="/src/css/auth.css" />
+    <link rel="stylesheet" href="/src/css/_layer_auth.css" />
+
+    <script src="/src/ts/index.ts" type="module"></script>
     <script src="/src/ts/auth-handler.ts" type="module"></script>
   </head>
   <body>
@@ -36,17 +39,22 @@
           />
         </div>
 
-        <div class="form-buttons">
-          <button type="submit">Register</button>
+        <div class="container">
+          <button type="submit" class="fancy" href="/html/example-canvas.html">
+            <span class="top-key"></span>
+            <span class="text">Register</span>
+            <span class="bottom-key-1"></span>
+            <span class="bottom-key-2"></span>
+          </button>
         </div>
       </form>
       <div>
         <div>
           If you already have an account, you can
-          <a href="/html/sign.html">sign in here!</a>
+          <a href="/html/sign.html" class="link">sign in here!</a>
         </div>
         <div>
-          <a href="/index.html">Home</a>
+          <a href="/index.html" class="link">Home</a>
         </div>
       </div>
     </div>
