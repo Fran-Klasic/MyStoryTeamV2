@@ -3,14 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Story Team - User dashboard</title>
+    <title>My Story Team - User Dashboard</title>
     <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/dashboard.css" />
+    <link rel="stylesheet" href="/src/css/_layer_dashboard.css" />
+
     <script src="/src/ts/auth/validate-auth.ts" type="module"></script>
 
     <script src="/src/ts/index.ts" type="module"></script>
     <script src="/src/ts/dahsboard/main.ts" type="module"></script>
   </head>
   <body>
-    Welcome to protected area
+    <header class="header">
+      <div class="title">My Story Team, Cinematic Planner & Helper</div>
+      <div class="user-data">Hello UserName!</div>
+    </header>
+    <aside class="aside">
+      <a id="home" class="side-button" href="/index.html">Home</a>
+      <a
+        id="dashboard"
+        class="side-button"
+        href="/html/auth/index.html"
+        style="font-size: 17px"
+        >Dashboard</a
+      >
+      <a id="user" class="side-button">User</a>
+      <a id="friends" class="side-button">Friends</a>
+      <a id="browse" class="side-button">Browse</a>
+      <a id="ai-helper" class="side-button">AI Helper</a>
+      <a id="stats" class="side-button">Stats</a>
+    </aside>
+    <main class="main-body">
+      <div class="favorites">
+        <div class="main-body-title">Favorites</div>
+        <!-- TS magic here -->
+        <!-- <div class="template">
+          <a href="">
+            <p>Untitled</p>
+            <img src="/public/assets/images/placeholder.webp" alt="" />
+          </a>
+        </div> -->
+      </div>
+
+      <div class="canvases">
+        <div class="main-body-title">Canvases</div>
+        <div class="template">
+          <a href="">
+            <p>Create New Canvas</p>
+            <img
+              src="/public/assets/icons/square-plus.svg"
+              alt=""
+              style="filter: invert(); width: 150px"
+            />
+          </a>
+        </div>
+        <!-- TS magic here -->
+        <!-- <div class="template">
+          <a href="">
+            <p>Untitled</p>
+            <img src="/public/assets/images/placeholder.webp" alt="" />
+          </a>
+        </div> -->
+      </div>
+      <div class="recent">
+        <div class="main-body-title">Recent</div>
+        <!-- TS magic here -->
+        <!-- <div class="template">
+          <a href="">
+            <p>Untitled</p>
+            <img src="/public/assets/images/placeholder.webp" alt="" />
+          </a>
+        </div> -->
+      </div>
+    </main>
   </body>
 </html>

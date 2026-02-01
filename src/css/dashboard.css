@@ -1,0 +1,187 @@
+@layer dashboard {
+  body {
+    background-color: var(--background-color);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    height: var(--header-height-canvas);
+    top: 0;
+    left: 0;
+    padding: 20px 30px;
+    background-color: var(--primary-color);
+    color: var(--font-color-light);
+    width: 100vw;
+    font-size: var(--font-h2);
+    border-bottom: 4px solid var(--border-color);
+  }
+  .title {
+    font-weight: bold;
+  }
+  .user-data {
+    font-size: var(--font-normal);
+  }
+  .aside {
+    display: flex;
+    width: 120px;
+    flex-direction: column;
+    gap: 60px;
+    position: absolute;
+    top: var(--header-height-canvas);
+    left: 0;
+    padding: 15px;
+    height: calc(100vh - var(--header-height-canvas));
+    border-right: 4px solid var(--border-color);
+    background-image: url(/public/assets/images/PosterV2.PNG);
+    background-size: cover;
+    background-position: 0 center;
+
+    will-change: background-position;
+
+    position: relative;
+    overflow: hidden;
+
+    animation: moveBg 60s ease-in-out infinite alternate;
+  }
+
+  @keyframes moveBg {
+    0% {
+      background-position: 0 center;
+    }
+    50% {
+      background-position: -230px center;
+    }
+    100% {
+      background-position: 0 center;
+    }
+  }
+  .aside::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(14, 14, 14, 0.597);
+    z-index: 0;
+  }
+
+  .aside > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .side-button {
+    text-align: center;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    text-decoration: none;
+
+    color: var(--font-color-light);
+    font-size: var(--font-button);
+    box-shadow: inset 0 0 0 0 #54b3d6;
+    color: var(--font-color-light);
+    transition:
+      color 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+  }
+  .side-button:hover {
+    box-shadow: inset 100px 0 0 0 #54b3d6;
+    color: white;
+    cursor: pointer;
+  }
+  .main-body {
+    position: absolute;
+    top: var(--header-height-canvas);
+    left: 120px;
+
+    width: calc(100vw - 120px);
+    height: calc(100vh - var(--header-height-canvas));
+    display: flex;
+    flex-direction: column;
+  }
+  /* ----------------------------------------------------------------------------------------------- */
+  .favorites,
+  .canvases,
+  .recent {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 2px solid var(--primary-color);
+    height: 100vh;
+    overflow-x: auto;
+    white-space: nowrap;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 20px;
+  }
+  .main-body-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--font-color-light);
+    padding: 2px;
+    background-color: var(--primary-color);
+    width: fit-content;
+    font-size: var(--font-normal);
+    border-bottom-right-radius: 8px;
+    border-right: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-color);
+  }
+  .template {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 300px;
+    height: 220px;
+    background-color: rgb(61, 61, 61);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  .template a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+  }
+  .template p {
+    width: 100%;
+    height: 40px;
+    padding: 8px;
+    text-align: center;
+    font-size: var(--font-normal);
+    color: var(--font-color-light);
+    border-bottom: 4px solid var(--border-color);
+    flex-shrink: 0;
+  }
+
+  .template img {
+    height: 180px;
+    max-width: 100%;
+    margin: auto;
+    object-fit: contain;
+  }
+
+  .favorites::-webkit-scrollbar,
+  .canvases::-webkit-scrollbar,
+  .recent::-webkit-scrollbar {
+    height: 12px;
+  }
+
+  .favorites::-webkit-scrollbar-track,
+  .canvases::-webkit-scrollbar-track,
+  .recent::-webkit-scrollbar-track {
+    background-color: #e7e7e7;
+    border: 1px solid #cacaca;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .favorites::-webkit-scrollbar-thumb,
+  .canvases::-webkit-scrollbar-thumb,
+  .recent::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: var(--tertiary-color);
+  }
+}
