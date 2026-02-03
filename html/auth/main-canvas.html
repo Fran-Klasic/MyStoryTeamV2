@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>My Story Team - Example Planner</title>
+    <link rel="stylesheet" href="/src/css/_layer_canvas.css" />
+    <link rel="stylesheet" href="/src/css/base.css" />
+    <link rel="stylesheet" href="/src/css/canvas.css" />
+
+    <script src="/src/ts/index.ts" type="module"></script>
+    <script src="/src/ts/canvas-main.ts" type="module"></script>
+  </head>
+  <body>
+    <header>
+      <div class="left">
+        <div>
+          <a href="/index.html">Home</a>
+        </div>
+        <div>
+          <label for="title-input">Title: </label>
+          <input type="text" maxlength="22" />
+        </div>
+        <div class="checkbox-wrapper-10">
+          <input class="tgl tgl-flip" id="visibility" type="checkbox" />
+          <label
+            class="tgl-btn"
+            data-tg-off="Private"
+            data-tg-on="Public"
+            for="visibility"
+          >
+          </label>
+        </div>
+        <div>
+          <label for="user-background-color">Background Color: </label>
+          <input type="color" id="user-background-color" value="#dffcfd" />
+          <button class="header-button" id="background-image-button">
+            Set Background Image
+          </button>
+          <input
+            type="file"
+            id="background-image-input"
+            accept="image/*"
+            hidden
+          />
+          <button class="header-button" id="default-value-button">
+            Set to default
+          </button>
+        </div>
+      </div>
+
+      <div class="right">
+        <div>
+          <a href="">Help</a>
+        </div>
+        <!-- Add more -->
+      </div>
+    </header>
+    <aside id="aside">
+      <button class="element-holder" id="text" data-type="Text">
+        <img src="/public/assets/icons/text.svg" alt="Add Text" />
+        <p>Add Text</p>
+      </button>
+      <button class="element-holder" id="list" data-type="List">
+        <img src="/public/assets/icons/rectangle-list.svg" alt="Add List" />
+        <p>Add List</p>
+      </button>
+      <button class="element-holder" id="task" data-type="Task">
+        <img src="/public/assets/icons/task-checklist.svg" alt="Add Task" />
+        <p>Add Task</p>
+      </button>
+      <button class="element-holder" id="image" data-type="Image">
+        <img src="/public/assets/icons/graphic-style.svg" alt="Add Image" />
+        <p>Add Image</p>
+      </button>
+      <button class="element-holder" id="audio" data-type="Audio">
+        <img src="/public/assets/icons/music-file.svg" alt="Add Audio" />
+        <p>Add Audio</p>
+      </button>
+      <button class="element-holder" id="video" data-type="Video">
+        <img src="/public/assets/icons/screen-play.svg" alt="Add Video" />
+        <p>Add Video</p>
+      </button>
+      <button class="element-holder" id="date" data-type="Date">
+        <img src="/public/assets/icons/calendar-clock.svg" alt="Add Date" />
+        <p>Add Date</p>
+      </button>
+    </aside>
+    <div class="canvas-viewport" id="canvas">
+      <svg id="connection-layer"></svg>
+    </div>
+  </body>
+</html>

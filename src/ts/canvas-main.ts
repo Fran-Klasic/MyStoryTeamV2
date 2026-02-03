@@ -1075,3 +1075,78 @@ export function placeDateElement(wrapper: HTMLElement, element: CanvasElement) {
 
 //#endregion
 //#endregion
+
+/*
+Add background change
+Add title
+Add theme
+*/
+
+//#region CUSTOM THEME
+const colorInput = document.getElementById(
+  "user-background-color",
+) as HTMLInputElement;
+
+const KEY = "background-color";
+
+const saved = localStorage.getItem(KEY);
+if (saved) {
+  colorInput.value = saved;
+  document.documentElement.style.setProperty("--background-color", saved);
+}
+
+colorInput.addEventListener("input", () => {
+  const value = colorInput.value;
+  document.documentElement.style.setProperty("--background-color", value);
+  localStorage.setItem(KEY, value);
+});
+
+const resetValue = document.getElementById(
+  "default-value-button",
+) as HTMLButtonElement;
+
+resetValue.addEventListener("click", SetDefaultValue);
+export function SetDefaultValue() {
+  canvas.style.backgroundImage =
+    "radial-gradient(var(--secondary-color) 2px,transparent 0)";
+  canvas.style.backgroundSize = "24px 24px";
+  canvas.style.backgroundRepeat = "repeat";
+  canvas.style.backgroundPosition = "top left";
+
+  const defaultValue = "#dffcfd";
+  colorInput.value = defaultValue;
+  document.documentElement.style.setProperty(
+    "--background-color",
+    defaultValue,
+  );
+  localStorage.setItem(KEY, defaultValue);
+}
+
+const button = document.getElementById(
+  "background-image-button",
+) as HTMLButtonElement;
+
+const fileInput = document.getElementById(
+  "background-image-input",
+) as HTMLInputElement;
+
+const canvas = document.getElementById("canvas") as HTMLElement;
+
+button.addEventListener("click", () => {
+  fileInput.click();
+});
+
+fileInput.addEventListener("change", () => {
+  const file = fileInput.files?.[0];
+  if (!file) return;
+
+  const imageUrl = URL.createObjectURL(file);
+
+  canvas.style.backgroundImage = `url(${imageUrl})`;
+  canvas.style.backgroundSize = "100%";
+  canvas.style.backgroundPosition = "center";
+  canvas.style.backgroundRepeat = "no-repeat";
+});
+
+//#endregion
+//#endregion

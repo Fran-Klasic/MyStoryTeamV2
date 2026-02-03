@@ -36,13 +36,20 @@
   .right div {
     padding: 0 20px;
   }
+  .left,
+  .right {
+    display: flex;
+  }
+  .left div input {
+    background-color: var(--secondary-color);
+  }
 
   aside {
     position: fixed;
     top: var(--canvas-header-height);
     max-width: var(--aside-width);
     height: 100%;
-    background-color: var(--background-color);
+    background-color: var(--background-color-permanent);
     display: grid;
     gap: 5px;
     z-index: 999;
@@ -83,6 +90,7 @@
     position: relative;
     transform-origin: top left;
     top: var(--canvas-header-height);
+    transition: background-image 0.3s ease;
     background-image: radial-gradient(
       var(--secondary-color) 2px,
       transparent 0
@@ -448,5 +456,144 @@
 
   .canvas-element-wrapper {
     z-index: 1;
+  }
+  label {
+    color: var(--font-color-light);
+    font-size: var(--font-normal);
+  }
+  header input {
+    border: none;
+    color: var(--font-color-light);
+    font-size: var(--font-normal);
+    outline: none;
+    border-radius: 3px;
+  }
+
+  .checkbox-wrapper-10 .tgl {
+    display: none;
+  }
+  .checkbox-wrapper-10 .tgl,
+  .checkbox-wrapper-10 .tgl:after,
+  .checkbox-wrapper-10 .tgl:before,
+  .checkbox-wrapper-10 .tgl *,
+  .checkbox-wrapper-10 .tgl *:after,
+  .checkbox-wrapper-10 .tgl *:before,
+  .checkbox-wrapper-10 .tgl + .tgl-btn {
+    box-sizing: border-box;
+  }
+  .checkbox-wrapper-10 .tgl::-moz-selection,
+  .checkbox-wrapper-10 .tgl:after::-moz-selection,
+  .checkbox-wrapper-10 .tgl:before::-moz-selection,
+  .checkbox-wrapper-10 .tgl *::-moz-selection,
+  .checkbox-wrapper-10 .tgl *:after::-moz-selection,
+  .checkbox-wrapper-10 .tgl *:before::-moz-selection,
+  .checkbox-wrapper-10 .tgl + .tgl-btn::-moz-selection,
+  .checkbox-wrapper-10 .tgl::selection,
+  .checkbox-wrapper-10 .tgl:after::selection,
+  .checkbox-wrapper-10 .tgl:before::selection,
+  .checkbox-wrapper-10 .tgl *::selection,
+  .checkbox-wrapper-10 .tgl *:after::selection,
+  .checkbox-wrapper-10 .tgl *:before::selection,
+  .checkbox-wrapper-10 .tgl + .tgl-btn::selection {
+    background: none;
+  }
+  .checkbox-wrapper-10 .tgl + .tgl-btn {
+    outline: 0;
+    display: block;
+    width: 140px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .checkbox-wrapper-10 .tgl + .tgl-btn:after,
+  .checkbox-wrapper-10 .tgl + .tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+  }
+  .checkbox-wrapper-10 .tgl + .tgl-btn:after {
+    left: 0;
+  }
+  .checkbox-wrapper-10 .tgl + .tgl-btn:before {
+    display: none;
+  }
+  .checkbox-wrapper-10 .tgl:checked + .tgl-btn:after {
+    left: 50%;
+  }
+
+  .checkbox-wrapper-10 .tgl-flip + .tgl-btn {
+    padding: 2px;
+    transition: all 0.2s ease;
+    perspective: 100px;
+  }
+  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:after,
+  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:before {
+    display: inline-block;
+    transition: all 0.4s ease;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    line-height: 30px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 4px;
+  }
+  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:after {
+    content: attr(data-tg-on);
+    background: var(--button-color);
+    transform: rotateY(-180deg);
+  }
+  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:before {
+    background: var(--tertiary-color);
+    content: attr(data-tg-off);
+  }
+  .checkbox-wrapper-10 .tgl-flip + .tgl-btn:active:before {
+    transform: rotateY(-20deg);
+  }
+  .checkbox-wrapper-10 .tgl-flip:checked + .tgl-btn:before {
+    transform: rotateY(180deg);
+  }
+  .checkbox-wrapper-10 .tgl-flip:checked + .tgl-btn:after {
+    transform: rotateY(0);
+    left: 0;
+    background: var(--button-color);
+  }
+  .checkbox-wrapper-10 .tgl-flip:checked + .tgl-btn:active:after {
+    transform: rotateY(20deg);
+  }
+  .header-button {
+    background-color: var(--secondary-color);
+    border: none;
+    color: var(--font-color-light);
+    font-size: var(--font-normal);
+    outline: none;
+    border-radius: 3px;
+    padding: 3px 10px;
+    cursor: pointer;
+
+    transition:
+      background-color 0.2s ease,
+      transform 0.1s ease,
+      box-shadow 0.1s ease;
+  }
+
+  .header-button:hover {
+    background-color: var(--tertiary-color);
+  }
+
+  .header-button:active {
+    transform: scale(0.96);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
   }
 }

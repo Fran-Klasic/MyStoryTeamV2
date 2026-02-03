@@ -1,20 +1,29 @@
 import { api } from "../api/api-handler";
 
 const TEST_ENDPOINT = "api/auth/test";
-const USER_DATA_ENDPOINT = "api/auth/getUserData";
+const USER_DATA_ENDPOINT = "api/dashboard/username";
+const USER_CANVASES_ENDPOINT = "api/dashboard";
 
 const LOGIN_URL = "/html/sign.html";
 
-async function callEndpoint(endpoint: string): Promise<Response> {
-  const response = await api.get(endpoint);
-  return response;
-}
-
 window.onload = async () => {
-  const response = callEndpoint(TEST_ENDPOINT);
-  const isValid = (await response).ok;
+  //#region VALIDATE USER
+  const response = await api.get(TEST_ENDPOINT);
+  const isValid = response.ok;
   if (isValid === false) {
     window.location.href = LOGIN_URL;
   }
-  const userData = callEndpoint(USER_DATA_ENDPOINT);
+  //#endregion
+
+  //#region GET USERNAME
+  const userData = await api.get(USER_DATA_ENDPOINT);
+  const username = await userData.json();
+
+  const nameSpace = document.getElementById("username") as HTMLElement;
+  nameSpace.textContent = `Hello ${username}!`;
+  //#endregion
+
+  //#region GET DASHBOARD DATA
+
+  //#endregion
 };
