@@ -1,8 +1,8 @@
 import { api } from "../api/api-handler";
 
 const TEST_ENDPOINT = "api/auth/test";
-const USER_DATA_ENDPOINT = "api/dashboard/username";
-const USER_CANVASES_ENDPOINT = "api/dashboard";
+const USER_DATA_ENDPOINT = "api/auth/user";
+const GET_ALL_USER_CANVASES = "api/auth/dashboard"; //GET
 
 const LOGIN_URL = "/html/sign.html";
 

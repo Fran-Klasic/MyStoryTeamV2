@@ -12,51 +12,43 @@
     <link rel="stylesheet" href="/src/css/canvas.css" />
 
     <script src="/src/ts/index.ts" type="module"></script>
-    <script src="/src/ts/canvas-main.ts" type="module"></script>
+    <script src="/src/ts/canvas-base.ts" type="module"></script>
+    <script src="/src/ts/auth/canvas-main.ts" type="module"></script>
   </head>
   <body>
-    <header>
-      <div class="left">
-        <div>
-          <a href="/index.html">Home</a>
-        </div>
-        <div>
-          <label for="title-input">Title: </label>
-          <input type="text" maxlength="22" />
-        </div>
-        <div class="checkbox-wrapper-10">
-          <input class="tgl tgl-flip" id="visibility" type="checkbox" />
-          <label
-            class="tgl-btn"
-            data-tg-off="Private"
-            data-tg-on="Public"
-            for="visibility"
-          >
-          </label>
-        </div>
-        <div>
-          <label for="user-background-color">Background Color: </label>
-          <input type="color" id="user-background-color" value="#dffcfd" />
-          <button class="header-button" id="background-image-button">
-            Set Background Image
-          </button>
-          <input
-            type="file"
-            id="background-image-input"
-            accept="image/*"
-            hidden
+    <div id="overlay">
+      <div id="text-overlay">Overlay Text</div>
+    </div>
+
+    <header class="app-header">
+      <div class="header-left">
+        <a href="/index.html" class="logo">My Story Team</a>
+        <button id="settings" class="settings-button base-button">
+          <img
+            class="settings-button-img"
+            src="/public/assets/icons/settings.svg"
+            alt="Settings"
           />
-          <button class="header-button" id="default-value-button">
-            Set to default
-          </button>
-        </div>
+        </button>
       </div>
 
-      <div class="right">
-        <div>
-          <a href="">Help</a>
-        </div>
-        <!-- Add more -->
+      <div class="header-center">
+        <input
+          class="header-title"
+          type="text"
+          value="Example Planner"
+          spellcheck="false"
+        />
+      </div>
+
+      <div class="header-right" style="padding-right: 10px">
+        <button class="save-button base-button">
+          <img
+            class="save-button-img"
+            src="/public/assets/icons/download.svg"
+            alt="Save"
+          />
+        </button>
       </div>
     </header>
     <aside id="aside">

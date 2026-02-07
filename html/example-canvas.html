@@ -15,19 +15,22 @@
     <script src="/src/ts/canvas-base.ts" type="module"></script>
   </head>
   <body>
-    <header>
-      <div class="left">
-        <div>
-          <a href="/index.html">Home</a>
-        </div>
-        <!-- Add more -->
+    <header class="app-header">
+      <div class="header-left">
+        <a href="/index.html" class="logo">My Story Team</a>
       </div>
 
-      <div class="right">
-        <div>
-          <a href="">Help</a>
-        </div>
-        <!-- Add more -->
+      <div class="header-center">
+        <input
+          class="header-title"
+          type="text"
+          value="Example Planner"
+          spellcheck="false"
+          readonly
+        />
+      </div>
+      <div class="header-right">
+        <a href=""><span class="logo">Help</span></a>
       </div>
     </header>
     <aside id="aside">

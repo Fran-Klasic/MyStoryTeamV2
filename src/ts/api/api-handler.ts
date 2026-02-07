@@ -13,7 +13,7 @@ export const api = {
   },
   _getBaseUrl() {
     if (window.location.host === "localhost:5173") {
-      return "https://localhost:7032";
+      return "https://localhost:7109";
     }
 
     console.error("Not supported host: ", window.location.host);

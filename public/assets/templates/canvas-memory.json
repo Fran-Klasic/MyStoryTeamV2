@@ -1,0 +1,57 @@
+{
+  "exportedAt": "2026-02-04T20:17:45.6590465",
+  "elements": [
+    {
+      "data": {
+        "listData": []
+      },
+      "id": "58f483cf-aa4f-41dc-a681-9c6bcca268fc",
+      "type": "List",
+      "position": {
+        "x": 432,
+        "y": 262,
+        "z": 1
+      },
+      "size": {
+        "x": 260,
+        "y": 160
+      },
+      "connections": []
+    },
+    {
+      "data": {
+        "data": "",
+        "checked": false
+      },
+      "id": "dfe0f371-cabd-4b66-84e1-a0ddf48b7398",
+      "type": "Task",
+      "position": {
+        "x": 891,
+        "y": 358,
+        "z": 1
+      },
+      "size": {
+        "x": 260,
+        "y": 160
+      },
+      "connections": []
+    },
+    {
+      "data": {
+        "base64File": ""
+      },
+      "id": "312d21b7-3549-402a-a29b-53a6356accd4",
+      "type": "Audio",
+      "position": {
+        "x": 345,
+        "y": 675,
+        "z": 1
+      },
+      "size": {
+        "x": 260,
+        "y": 160
+      },
+      "connections": []
+    }
+  ]
+}

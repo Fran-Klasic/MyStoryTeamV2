@@ -4,8 +4,8 @@ import { Vector3Int } from "./vector3int";
 
 export function getJson(): string {
   const data = {
-    ExportedAt: new Date().toISOString(),
-    Elements: Array.isArray(CanvasMemory) ? CanvasMemory : [],
+    exportedAt: new Date().toISOString(),
+    elements: Array.isArray(CanvasMemory) ? CanvasMemory : [],
   };
   const json = JSON.stringify(data, null, 2);
 
@@ -13,55 +13,6 @@ export function getJson(): string {
   console.info(json);
   return json;
 }
-
-//#region DEBUG
-
-//in DEV TOOLS: logCanvasMemory()
-// @ts-ignore
-window.logCanvasMemory = logCanvasMemory;
-
-export function logCanvasMemory() {
-  console.info("CanvasMemory Array:");
-  console.info(
-    CanvasMemory.map((el) => ({
-      id: el.id,
-      type: el.type,
-      position: el.position,
-      size: el.size,
-      data: el.data,
-      connections: el.connections,
-    })),
-  );
-}
-
-//TODO FIX JSON STRINGIFY ---------------------------------------------------------------------------------------
-//in DEV TOOLS: exportCanvasMemoryJSON() || exportCanvasMemoryJSON("fileName.json")
-// @ts-ignore
-window.exportCanvasMemoryJSON = exportCanvasMemoryJSON;
-export function exportCanvasMemoryJSON(filename = "canvas-memory.json") {
-  const json = getJson();
-
-  const blob = new Blob([json], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-//in DEV TOOLS:
-/*
- fetch("/assets/templates/canvas-memory.json")
-   .then(r => r.text())
-   .then(importCanvasMemoryJSON);
-*/
-// @ts-ignore
-window.importCanvasMemoryJSON = importCanvasMemoryJSON;
 export function importCanvasMemoryJSON(json: string | object) {
   let parsed: any;
 
@@ -105,6 +56,50 @@ export function importCanvasMemoryJSON(json: string | object) {
   console.info("Canvas imported successfully");
 }
 
+//#region DEBUG
+//in DEV TOOLS: logCanvasMemory()
+// @ts-ignore
+window.logCanvasMemory = logCanvasMemory;
+export function logCanvasMemory() {
+  console.info("CanvasMemory Array:");
+  console.info(
+    CanvasMemory.map((el) => ({
+      id: el.id,
+      type: el.type,
+      position: el.position,
+      size: el.size,
+      data: el.data,
+      connections: el.connections,
+    })),
+  );
+}
+//in DEV TOOLS: exportCanvasMemoryJSON() || exportCanvasMemoryJSON("fileName.json")
+// @ts-ignore
+window.exportCanvasMemoryJSON = exportCanvasMemoryJSON;
+export function exportCanvasMemoryJSON(filename = "canvas-memory.json") {
+  const json = getJson();
+
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+//in DEV TOOLS:
+/*
+ fetch("/assets/templates/canvas-memory.json")
+   .then(r => r.text())
+   .then(importCanvasMemoryJSON);
+*/
+// @ts-ignore
+window.importCanvasMemoryJSON = importCanvasMemoryJSON;
 //#endregion
 
 //#region GHOST DRAGGING

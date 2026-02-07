@@ -16,6 +16,7 @@
     --font-title: 50px;
     --font-h1: 50px;
     --font-h2: 40px;
+    --font-h3: 30px;
     --font-normal: 23px;
     --font-small: 15px;
     --font-mini: 12px;
@@ -57,11 +58,11 @@
 
   @media (max-width: 480px) {
     :root {
-      --font-title: 32px;
-      --font-h1: 32px;
-      --font-h2: 26px;
-      --font-normal: 17px;
-      --font-button: 15px;
+      --font-title: 30px;
+      --font-h1: 30px;
+      --font-h2: 24px;
+      --font-normal: 15px;
+      --font-button: 13px;
     }
     nav {
       grid-template-columns: repeat(3, 1fr);
