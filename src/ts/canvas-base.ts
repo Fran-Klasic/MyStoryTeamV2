@@ -4,6 +4,7 @@ import { Vector3Int } from "./vector3int";
 
 export function getJson(): string {
   const data = {
+    version: "1",
     exportedAt: new Date().toISOString(),
     elements: Array.isArray(CanvasMemory) ? CanvasMemory : [],
   };
